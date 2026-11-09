@@ -1,9 +1,28 @@
 {
   "framework": [],
-  "mission": [],
+  "mission": [
+    {
+      "title": "human audinting",
+      "src": "videos/human_audinting.mp4"
+    },
+    {
+      "title": "mission exec INTERACTIVE",
+      "src": "videos/mission_exec_INTERACTIVE.mp4"
+    }
+  ],
   "transformer": [],
-  "hardware": [],
-  "perception": [],
+  "hardware": [
+    {
+      "title": "starling2 rrt tube stage10.29 1.00",
+      "src": "videos/starling2_rrt_tube_stage10.29-1.00.mp4"
+    }
+  ],
+  "perception": [
+    {
+      "title": "perception uncertainity",
+      "src": "videos/perception_uncertainity.mp4"
+    }
+  ],
   "control": [],
   "clearance": [],
   "acp": [],
