@@ -1,0 +1,1629 @@
+{
+  "validation": {
+    "mean_euclidean_imitation_loss_m": 0.277291476726532,
+    "median_waypoint_error_m": 0.05635122209787369,
+    "p95_waypoint_error_m": 1.8156813383102417,
+    "maximum_waypoint_error_m": 4.49130916595459
+  },
+  "test": {
+    "mean_euclidean_imitation_loss_m": 0.2918640971183777,
+    "median_waypoint_error_m": 0.053699105978012085,
+    "p95_waypoint_error_m": 2.0339953899383545,
+    "maximum_waypoint_error_m": 4.650851249694824
+  },
+  "route_examples": [
+    {
+      "sample_id": "scene-000005-goal-00-pref-00",
+      "scene_id": 5,
+      "preference": "Take the quickest collision-free way to the destination.",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          -0.8322645425796509,
+          -1.411257266998291
+        ],
+        [
+          -1.1659290790557861,
+          -0.9312146902084351
+        ],
+        [
+          -1.4995936155319214,
+          -0.45117202401161194
+        ],
+        [
+          -1.8332581520080566,
+          0.028870610520243645
+        ],
+        [
+          -2.0576319694519043,
+          0.556168794631958
+        ],
+        [
+          -2.1788158416748047,
+          1.128084421157837
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.48920488357543945,
+          -1.911771535873413
+        ],
+        [
+          -0.8209869861602783,
+          -1.4115078449249268
+        ],
+        [
+          -1.1453449726104736,
+          -0.920952320098877
+        ],
+        [
+          -1.4746301174163818,
+          -0.4228506088256836
+        ],
+        [
+          -1.7564771175384521,
+          0.0712888240814209
+        ],
+        [
+          -1.955460786819458,
+          0.6225094795227051
+        ],
+        [
+          -2.1505188941955566,
+          1.1684513092041016
+        ],
+        [
+          -2.326948881149292,
+          1.7287554740905762
+        ]
+      ],
+      "full_route_mean_error_m": 0.04910045862197876,
+      "interior_mean_error_m": 0.05514491721987724
+    },
+    {
+      "sample_id": "scene-000005-goal-00-pref-01",
+      "scene_id": 5,
+      "preference": "Give every obstacle the widest practical berth.",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          -0.9217531085014343,
+          -1.4760268926620483
+        ],
+        [
+          -1.3237550258636475,
+          -1.0439444780349731
+        ],
+        [
+          -1.6327569484710693,
+          -0.5379524230957031
+        ],
+        [
+          -1.9417588710784912,
+          -0.03196035698056221
+        ],
+        [
+          -2.0976932048797607,
+          0.5316197276115417
+        ],
+        [
+          -2.1988465785980225,
+          1.1158099174499512
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.4914698600769043,
+          -1.9107252359390259
+        ],
+        [
+          -0.8798232078552246,
+          -1.4452078342437744
+        ],
+        [
+          -1.2507848739624023,
+          -0.9852504730224609
+        ],
+        [
+          -1.5912611484527588,
+          -0.4997122287750244
+        ],
+        [
+          -1.8718185424804688,
+          0.004161834716796875
+        ],
+        [
+          -2.0666048526763916,
+          0.5594239234924316
+        ],
+        [
+          -2.20353364944458,
+          1.136652946472168
+        ],
+        [
+          -2.3393077850341797,
+          1.715064525604248
+        ]
+      ],
+      "full_route_mean_error_m": 0.05083628371357918,
+      "interior_mean_error_m": 0.057317014783620834
+    },
+    {
+      "sample_id": "scene-000005-goal-00-pref-02",
+      "scene_id": 5,
+      "preference": "Choose a reasonable compromise between speed and spacing.",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          -0.8322645425796509,
+          -1.411257266998291
+        ],
+        [
+          -1.1659290790557861,
+          -0.9312146902084351
+        ],
+        [
+          -1.4995936155319214,
+          -0.45117202401161194
+        ],
+        [
+          -1.8332581520080566,
+          0.028870610520243645
+        ],
+        [
+          -2.0576319694519043,
+          0.556168794631958
+        ],
+        [
+          -2.1788158416748047,
+          1.128084421157837
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.4895751476287842,
+          -1.9138777256011963
+        ],
+        [
+          -0.8573131561279297,
+          -1.4292914867401123
+        ],
+        [
+          -1.2126898765563965,
+          -0.954740047454834
+        ],
+        [
+          -1.566117763519287,
+          -0.47432422637939453
+        ],
+        [
+          -1.8692903518676758,
+          0.012431144714355469
+        ],
+        [
+          -2.063060760498047,
+          0.5628824234008789
+        ],
+        [
+          -2.202868938446045,
+          1.1361494064331055
+        ],
+        [
+          -2.3355190753936768,
+          1.7268500328063965
+        ]
+      ],
+      "full_route_mean_error_m": 0.03701211139559746,
+      "interior_mean_error_m": 0.037876103073358536
+    },
+    {
+      "sample_id": "scene-000005-goal-00-pref-03",
+      "scene_id": 5,
+      "preference": "Give the person (person-1) extra space.",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          -0.9217531085014343,
+          -1.4760268926620483
+        ],
+        [
+          -1.3237550258636475,
+          -1.0439444780349731
+        ],
+        [
+          -1.6327569484710693,
+          -0.5379524230957031
+        ],
+        [
+          -1.9417588710784912,
+          -0.03196035698056221
+        ],
+        [
+          -2.0976932048797607,
+          0.5316197276115417
+        ],
+        [
+          -2.1988465785980225,
+          1.1158099174499512
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.49236011505126953,
+          -1.9140948057174683
+        ],
+        [
+          -0.9264707565307617,
+          -1.4782072305679321
+        ],
+        [
+          -1.3241701126098633,
+          -1.0375456809997559
+        ],
+        [
+          -1.6235225200653076,
+          -0.5316605567932129
+        ],
+        [
+          -1.8512182235717773,
+          0.005883216857910156
+        ],
+        [
+          -2.0240540504455566,
+          0.5573780536651611
+        ],
+        [
+          -2.180969715118408,
+          1.1335978507995605
+        ],
+        [
+          -2.330425262451172,
+          1.7176733016967773
+        ]
+      ],
+      "full_route_mean_error_m": 0.035370904952287674,
+      "interior_mean_error_m": 0.037357985973358154
+    },
+    {
+      "sample_id": "scene-000005-goal-00-pref-04",
+      "scene_id": 5,
+      "preference": "Without violating clearance, stay near the chair (chair-2).",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          0.27324140071868896,
+          -1.282325029373169
+        ],
+        [
+          1.0450828075408936,
+          -0.6733500361442566
+        ],
+        [
+          1.0125771760940552,
+          0.1778281033039093
+        ],
+        [
+          0.48526906967163086,
+          0.9403387308120728
+        ],
+        [
+          -0.34888389706611633,
+          1.4560611248016357
+        ],
+        [
+          -1.324441909790039,
+          1.5780305862426758
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.4889054298400879,
+          -1.912454605102539
+        ],
+        [
+          -0.7058725357055664,
+          -1.3818941116333008
+        ],
+        [
+          -0.9454421997070312,
+          -0.8646578788757324
+        ],
+        [
+          -1.296189546585083,
+          -0.368685245513916
+        ],
+        [
+          -1.6235542297363281,
+          0.11113286018371582
+        ],
+        [
+          -1.8426122665405273,
+          0.6688563823699951
+        ],
+        [
+          -2.0755388736724854,
+          1.2054166793823242
+        ],
+        [
+          -2.3300070762634277,
+          1.730900764465332
+        ]
+      ],
+      "full_route_mean_error_m": 1.2769591808319092,
+      "interior_mean_error_m": 1.6915550231933594
+    },
+    {
+      "sample_id": "scene-000005-goal-00-pref-05",
+      "scene_id": 5,
+      "preference": "Meet a 14.01-second deadline and use the clearest feasible route.",
+      "environment": {
+        "goal": {
+          "x": -2.3,
+          "y": 1.7,
+          "z": -0.5
+        },
+        "obstacles": [
+          {
+            "label": "person",
+            "max_corner": [
+              0.411,
+              0.1994,
+              0.0
+            ],
+            "min_corner": [
+              -0.1782,
+              -0.3899,
+              -1.0
+            ],
+            "object_id": "person-1"
+          },
+          {
+            "label": "chair",
+            "max_corner": [
+              -0.6068,
+              0.9653,
+              0.0
+            ],
+            "min_corner": [
+              -1.2071,
+              0.3651,
+              -1.0
+            ],
+            "object_id": "chair-2"
+          }
+        ],
+        "scene_id": 5,
+        "scene_profile": "vertical_person_chair",
+        "start": {
+          "x": -0.4986,
+          "y": -1.8913,
+          "z": -0.5
+        },
+        "workspace": {
+          "x": [
+            -4.0,
+            4.0
+          ],
+          "y": [
+            -3.0,
+            3.0
+          ],
+          "z": -0.5
+        }
+      },
+      "expert_xy": [
+        [
+          -0.4986000061035156,
+          -1.8912999629974365
+        ],
+        [
+          -0.9217531085014343,
+          -1.4760268926620483
+        ],
+        [
+          -1.3237550258636475,
+          -1.0439444780349731
+        ],
+        [
+          -1.6327569484710693,
+          -0.5379524230957031
+        ],
+        [
+          -1.9417588710784912,
+          -0.03196035698056221
+        ],
+        [
+          -2.0976932048797607,
+          0.5316197276115417
+        ],
+        [
+          -2.1988465785980225,
+          1.1158099174499512
+        ],
+        [
+          -2.299999952316284,
+          1.7000000476837158
+        ]
+      ],
+      "predicted_xy": [
+        [
+          -0.49141645431518555,
+          -1.914794683456421
+        ],
+        [
+          -0.8790934085845947,
+          -1.4374773502349854
+        ],
+        [
+          -1.2487664222717285,
+          -0.9733662605285645
+        ],
+        [
+          -1.6063728332519531,
+          -0.48594236373901367
+        ],
+        [
+          -1.8957018852233887,
+          0.008829593658447266
+        ],
+        [
+          -2.084232807159424,
+          0.5564060211181641
+        ],
+        [
+          -2.2091312408447266,
+          1.128769874572754
+        ],
+        [
+          -2.3282198905944824,
+          1.7232589721679688
+        ]
+      ],
+      "full_route_mean_error_m": 0.04827579855918884,
+      "interior_mean_error_m": 0.054178059101104736
+    }
+  ],
+  "gradient_norms": {
+    "text_encoder": 26.927602604998565,
+    "scene_projection": 4.298557538585827,
+    "fusion_transformer": 5.0184769836205,
+    "waypoint_decoder": 1.3899946470971172,
+    "coordinate_head": 5.013837528222766,
+    "text_projection": 1.5897463984289673,
+    "scene_position_embedding": 0.23193956869359764,
+    "modality_embedding": 0.2824902078526524,
+    "route_queries": 0.47338569164276123
+  },
+  "sensitivity": {
+    "text_change_normalized_waypoint_delta": 0.5367951393127441,
+    "scene_change_normalized_waypoint_delta": 0.5288456678390503,
+    "text_response_nonzero": true,
+    "scene_response_nonzero": true
+  },
+  "checkpoint_metrics": {
+    "euclidean_imitation_loss_m": 0.2772914745977947,
+    "conformity_quantile": null,
+    "safety_radius_m": null,
+    "verification_pass_rate": 0.8645833333333334,
+    "epoch": 67,
+    "train_euclidean_imitation_loss_m": 0.255425386446895
+  },
+  "history": [
+    {
+      "euclidean_imitation_loss_m": 0.6183007260163625,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7194940476190477,
+      "epoch": 1,
+      "train_euclidean_imitation_loss_m": 1.1516735458012783
+    },
+    {
+      "euclidean_imitation_loss_m": 0.45265150992643266,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7284226190476191,
+      "epoch": 2,
+      "train_euclidean_imitation_loss_m": 0.5570190291513096
+    },
+    {
+      "euclidean_imitation_loss_m": 0.4212759279069446,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7965029761904762,
+      "epoch": 3,
+      "train_euclidean_imitation_loss_m": 0.44835937515352714
+    },
+    {
+      "euclidean_imitation_loss_m": 0.4075149389959517,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8046875,
+      "epoch": 4,
+      "train_euclidean_imitation_loss_m": 0.41749192239208655
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3987534273238409,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7421875,
+      "epoch": 5,
+      "train_euclidean_imitation_loss_m": 0.39940363482543917
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3699066035804294,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8311011904761905,
+      "epoch": 6,
+      "train_euclidean_imitation_loss_m": 0.3836356041332086
+    },
+    {
+      "euclidean_imitation_loss_m": 0.35468157806566786,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8303571428571429,
+      "epoch": 7,
+      "train_euclidean_imitation_loss_m": 0.3627134863400098
+    },
+    {
+      "euclidean_imitation_loss_m": 0.34385837543578374,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7831101190476191,
+      "epoch": 8,
+      "train_euclidean_imitation_loss_m": 0.3495129912640109
+    },
+    {
+      "euclidean_imitation_loss_m": 0.33795572888283504,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8396577380952381,
+      "epoch": 9,
+      "train_euclidean_imitation_loss_m": 0.34133627464373906
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3195374214223453,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8117559523809523,
+      "epoch": 10,
+      "train_euclidean_imitation_loss_m": 0.3324595671485771
+    },
+    {
+      "euclidean_imitation_loss_m": 0.32820795547394527,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8218005952380952,
+      "epoch": 11,
+      "train_euclidean_imitation_loss_m": 0.3312531268732114
+    },
+    {
+      "euclidean_imitation_loss_m": 0.30792737149056937,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8154761904761905,
+      "epoch": 12,
+      "train_euclidean_imitation_loss_m": 0.3225633547161565
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3123870939016342,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8229166666666666,
+      "epoch": 13,
+      "train_euclidean_imitation_loss_m": 0.32122957209746045
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3177853985911324,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.7912946428571429,
+      "epoch": 14,
+      "train_euclidean_imitation_loss_m": 0.31666815983075086
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3242797145531291,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8444940476190477,
+      "epoch": 15,
+      "train_euclidean_imitation_loss_m": 0.31469852083334415
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3061730716200102,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8411458333333334,
+      "epoch": 16,
+      "train_euclidean_imitation_loss_m": 0.31289865776444925
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3092269276579221,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8381696428571429,
+      "epoch": 17,
+      "train_euclidean_imitation_loss_m": 0.31100010143762286
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3140180873728934,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8273809523809523,
+      "epoch": 18,
+      "train_euclidean_imitation_loss_m": 0.31489819453069656
+    },
+    {
+      "euclidean_imitation_loss_m": 0.33065433197078253,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8697916666666666,
+      "epoch": 19,
+      "train_euclidean_imitation_loss_m": 0.3054041783692259
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3016568227183251,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8370535714285714,
+      "epoch": 20,
+      "train_euclidean_imitation_loss_m": 0.30660253850122293
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3222404870958555,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8590029761904762,
+      "epoch": 21,
+      "train_euclidean_imitation_loss_m": 0.3027915907289946
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2923906250368981,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8366815476190477,
+      "epoch": 22,
+      "train_euclidean_imitation_loss_m": 0.3026714069712343
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3027611594824564,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8255208333333334,
+      "epoch": 23,
+      "train_euclidean_imitation_loss_m": 0.2992526159029115
+    },
+    {
+      "euclidean_imitation_loss_m": 0.29996785344112487,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8444940476190477,
+      "epoch": 24,
+      "train_euclidean_imitation_loss_m": 0.2971959382747159
+    },
+    {
+      "euclidean_imitation_loss_m": 0.3046037533453533,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8385416666666666,
+      "epoch": 25,
+      "train_euclidean_imitation_loss_m": 0.29569584281381334
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2924171019168127,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8549107142857143,
+      "epoch": 26,
+      "train_euclidean_imitation_loss_m": 0.29345994738466813
+    },
+    {
+      "euclidean_imitation_loss_m": 0.296731839577357,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8523065476190477,
+      "epoch": 27,
+      "train_euclidean_imitation_loss_m": 0.2952095184362296
+    },
+    {
+      "euclidean_imitation_loss_m": 0.30101666741427924,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8456101190476191,
+      "epoch": 28,
+      "train_euclidean_imitation_loss_m": 0.2938754019525015
+    },
+    {
+      "euclidean_imitation_loss_m": 0.30126561508292243,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8404017857142857,
+      "epoch": 29,
+      "train_euclidean_imitation_loss_m": 0.2922595639797774
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2914623983559154,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8463541666666666,
+      "epoch": 30,
+      "train_euclidean_imitation_loss_m": 0.289452007808017
+    },
+    {
+      "euclidean_imitation_loss_m": 0.30369310613189426,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8422619047619048,
+      "epoch": 31,
+      "train_euclidean_imitation_loss_m": 0.290044061771848
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28749819774003255,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8552827380952381,
+      "epoch": 32,
+      "train_euclidean_imitation_loss_m": 0.28964893776133205
+    },
+    {
+      "euclidean_imitation_loss_m": 0.29787481008541017,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8303571428571429,
+      "epoch": 33,
+      "train_euclidean_imitation_loss_m": 0.2885938418746898
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2895112633705139,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8541666666666666,
+      "epoch": 34,
+      "train_euclidean_imitation_loss_m": 0.2871610283512961
+    },
+    {
+      "euclidean_imitation_loss_m": 0.300066046771549,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8311011904761905,
+      "epoch": 35,
+      "train_euclidean_imitation_loss_m": 0.28518636084415694
+    },
+    {
+      "euclidean_imitation_loss_m": 0.282343351770015,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8567708333333334,
+      "epoch": 36,
+      "train_euclidean_imitation_loss_m": 0.28594404306601395
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28254631090731847,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8433779761904762,
+      "epoch": 37,
+      "train_euclidean_imitation_loss_m": 0.2852824234149673
+    },
+    {
+      "euclidean_imitation_loss_m": 0.29059099441482905,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8690476190476191,
+      "epoch": 38,
+      "train_euclidean_imitation_loss_m": 0.28350490979624515
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28685163529146285,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8549107142857143,
+      "epoch": 39,
+      "train_euclidean_imitation_loss_m": 0.28214547175801163
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2849406397768429,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8407738095238095,
+      "epoch": 40,
+      "train_euclidean_imitation_loss_m": 0.2818172765274843
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28517753205129076,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8616071428571429,
+      "epoch": 41,
+      "train_euclidean_imitation_loss_m": 0.28117435074439556
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2844678426072711,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8552827380952381,
+      "epoch": 42,
+      "train_euclidean_imitation_loss_m": 0.27953867685388434
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28656039138635,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8556547619047619,
+      "epoch": 43,
+      "train_euclidean_imitation_loss_m": 0.27903102705198707
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2841287042413439,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8578869047619048,
+      "epoch": 44,
+      "train_euclidean_imitation_loss_m": 0.2777955321990179
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2919246078956695,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8616071428571429,
+      "epoch": 45,
+      "train_euclidean_imitation_loss_m": 0.2767764531979055
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28540146067028954,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8511904761904762,
+      "epoch": 46,
+      "train_euclidean_imitation_loss_m": 0.2767847608097575
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2817225729425748,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8671875,
+      "epoch": 47,
+      "train_euclidean_imitation_loss_m": 0.2745780622078614
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28728741726705004,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8504464285714286,
+      "epoch": 48,
+      "train_euclidean_imitation_loss_m": 0.27558972989067887
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28368697812159854,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8571428571428571,
+      "epoch": 49,
+      "train_euclidean_imitation_loss_m": 0.27252955971793696
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2873523284991582,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8649553571428571,
+      "epoch": 50,
+      "train_euclidean_imitation_loss_m": 0.27254459934704234
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28208887860888526,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8545386904761905,
+      "epoch": 51,
+      "train_euclidean_imitation_loss_m": 0.2725558355224855
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2881479784846306,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8519345238095238,
+      "epoch": 52,
+      "train_euclidean_imitation_loss_m": 0.26941442967138507
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28166901284740087,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 53,
+      "train_euclidean_imitation_loss_m": 0.268428763713349
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2798674801985423,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8545386904761905,
+      "epoch": 54,
+      "train_euclidean_imitation_loss_m": 0.2677800633916349
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2853405365631694,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8519345238095238,
+      "epoch": 55,
+      "train_euclidean_imitation_loss_m": 0.2686275765299797
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2823207619644347,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8523065476190477,
+      "epoch": 56,
+      "train_euclidean_imitation_loss_m": 0.2664334263426788
+    },
+    {
+      "euclidean_imitation_loss_m": 0.27750440474067417,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8586309523809523,
+      "epoch": 57,
+      "train_euclidean_imitation_loss_m": 0.26504561380680763
+    },
+    {
+      "euclidean_imitation_loss_m": 0.283113932680516,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8545386904761905,
+      "epoch": 58,
+      "train_euclidean_imitation_loss_m": 0.2637224374395428
+    },
+    {
+      "euclidean_imitation_loss_m": 0.280801269979704,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8630952380952381,
+      "epoch": 59,
+      "train_euclidean_imitation_loss_m": 0.2629387918521057
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2863714907850538,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8552827380952381,
+      "epoch": 60,
+      "train_euclidean_imitation_loss_m": 0.26186922518818667
+    },
+    {
+      "euclidean_imitation_loss_m": 0.27763527170533225,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8586309523809523,
+      "epoch": 61,
+      "train_euclidean_imitation_loss_m": 0.2644829709534392
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2846273964359647,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8578869047619048,
+      "epoch": 62,
+      "train_euclidean_imitation_loss_m": 0.2599181302004691
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2811569997242519,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8630952380952381,
+      "epoch": 63,
+      "train_euclidean_imitation_loss_m": 0.260359103379376
+    },
+    {
+      "euclidean_imitation_loss_m": 0.27959562767119633,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8575148809523809,
+      "epoch": 64,
+      "train_euclidean_imitation_loss_m": 0.25824190232564104
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2788113039873895,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8530505952380952,
+      "epoch": 65,
+      "train_euclidean_imitation_loss_m": 0.2576415540029605
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2826215546755564,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8630952380952381,
+      "epoch": 66,
+      "train_euclidean_imitation_loss_m": 0.25645959206828567
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2772914745977947,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8645833333333334,
+      "epoch": 67,
+      "train_euclidean_imitation_loss_m": 0.255425386446895
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2786071275671323,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8686755952380952,
+      "epoch": 68,
+      "train_euclidean_imitation_loss_m": 0.2551081686421777
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28253145657834555,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8709077380952381,
+      "epoch": 69,
+      "train_euclidean_imitation_loss_m": 0.25339163410844223
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28159154809656595,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8552827380952381,
+      "epoch": 70,
+      "train_euclidean_imitation_loss_m": 0.2530974460822163
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28071935368435724,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8563988095238095,
+      "epoch": 71,
+      "train_euclidean_imitation_loss_m": 0.2518063729120926
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2842181378177234,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8534226190476191,
+      "epoch": 72,
+      "train_euclidean_imitation_loss_m": 0.25047736044860247
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28948086890436353,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8537946428571429,
+      "epoch": 73,
+      "train_euclidean_imitation_loss_m": 0.2508236427650307
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28867999003047035,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8586309523809523,
+      "epoch": 74,
+      "train_euclidean_imitation_loss_m": 0.24890912052131062
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2834705064694087,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8597470238095238,
+      "epoch": 75,
+      "train_euclidean_imitation_loss_m": 0.24761159754160678
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2844571527980623,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8608630952380952,
+      "epoch": 76,
+      "train_euclidean_imitation_loss_m": 0.24558865012544573
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28516089064734323,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 77,
+      "train_euclidean_imitation_loss_m": 0.24496844983236357
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2824541724153927,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8612351190476191,
+      "epoch": 78,
+      "train_euclidean_imitation_loss_m": 0.24380211670967666
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28754183437143055,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8530505952380952,
+      "epoch": 79,
+      "train_euclidean_imitation_loss_m": 0.242890254927404
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28792991098903475,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8597470238095238,
+      "epoch": 80,
+      "train_euclidean_imitation_loss_m": 0.2428662561218847
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28830375983601525,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.859375,
+      "epoch": 81,
+      "train_euclidean_imitation_loss_m": 0.2421610519967296
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2904247173241207,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8578869047619048,
+      "epoch": 82,
+      "train_euclidean_imitation_loss_m": 0.24092713025483217
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28928237834147047,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8519345238095238,
+      "epoch": 83,
+      "train_euclidean_imitation_loss_m": 0.2407755439141483
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2886935029001463,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8619791666666666,
+      "epoch": 84,
+      "train_euclidean_imitation_loss_m": 0.24006528056254892
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2849104610227403,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8590029761904762,
+      "epoch": 85,
+      "train_euclidean_imitation_loss_m": 0.23891175677153198
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28733458263533457,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8582589285714286,
+      "epoch": 86,
+      "train_euclidean_imitation_loss_m": 0.23896842782921862
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2886314853316262,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8597470238095238,
+      "epoch": 87,
+      "train_euclidean_imitation_loss_m": 0.23794401747485003
+    },
+    {
+      "euclidean_imitation_loss_m": 0.29013390874578837,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8578869047619048,
+      "epoch": 88,
+      "train_euclidean_imitation_loss_m": 0.23768876690530416
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2869173621847516,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.859375,
+      "epoch": 89,
+      "train_euclidean_imitation_loss_m": 0.23732296532076416
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2866955225666364,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8627232142857143,
+      "epoch": 90,
+      "train_euclidean_imitation_loss_m": 0.23674484432646722
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28815708344890956,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8571428571428571,
+      "epoch": 91,
+      "train_euclidean_imitation_loss_m": 0.2365543533342354
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28794810317811514,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8575148809523809,
+      "epoch": 92,
+      "train_euclidean_imitation_loss_m": 0.2365080920584274
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28865573271399453,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 93,
+      "train_euclidean_imitation_loss_m": 0.23586633358940934
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28889050476607825,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8612351190476191,
+      "epoch": 94,
+      "train_euclidean_imitation_loss_m": 0.23502659630594833
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28893971052907763,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8601190476190477,
+      "epoch": 95,
+      "train_euclidean_imitation_loss_m": 0.2355484798211943
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28926709365277065,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.859375,
+      "epoch": 96,
+      "train_euclidean_imitation_loss_m": 0.23514527251774614
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2892779175724302,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 97,
+      "train_euclidean_imitation_loss_m": 0.2347065699822975
+    },
+    {
+      "euclidean_imitation_loss_m": 0.289303363433906,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 98,
+      "train_euclidean_imitation_loss_m": 0.2352025305908738
+    },
+    {
+      "euclidean_imitation_loss_m": 0.2892403716132754,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 99,
+      "train_euclidean_imitation_loss_m": 0.23461079643757055
+    },
+    {
+      "euclidean_imitation_loss_m": 0.28926156283844084,
+      "conformity_quantile": null,
+      "safety_radius_m": null,
+      "verification_pass_rate": 0.8604910714285714,
+      "epoch": 100,
+      "train_euclidean_imitation_loss_m": 0.23513307021648594
+    }
+  ],
+  "provenance": {
+    "repository": "https://github.com/prachitgupta/starling_testing_ws",
+    "snapshot_commit": "5a389788e95ad47b9feddeea962401370aab27bf",
+    "run": "fine_tuning/outputs/final-transformer-vertical-teacher_only_80_10_10",
+    "note": "Archived offline evaluation. Unavailable infinite quantiles/radii are exported as null. This is not a hardware or adaptive-coverage evaluation."
+  }
+}

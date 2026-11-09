@@ -1,0 +1,12 @@
+{
+  "framework": {"title":"Framework overview", "keywords":["framework", "overview", "pipeline"]},
+  "mission": {"title":"Interactive mission planning", "keywords":["mission", "interactive", "intent"]},
+  "transformer": {"title":"Transformer waypoint prediction", "keywords":["transformer", "waypoint", "prediction"]},
+  "hardware": {"title":"Hardware trajectory execution", "keywords":["hardware", "flight", "execution"]},
+  "perception": {"title":"Semantic obstacle perception", "keywords":["perception", "semantic", "corners", "vicon"]},
+  "control": {"title":"Optimized trajectory tracking", "keywords":["control", "tracking", "optimized"]},
+  "clearance": {"title":"Obstacle clearance", "keywords":["clearance", "obstacle", "safety"]},
+  "acp": {"title":"Adaptive conformal prediction", "keywords":["acp", "adaptive", "coverage"]},
+  "expert": {"title":"HRRT expert trajectory", "keywords":["hrrt", "expert"]},
+  "calibration": {"title":"Residual calibration", "keywords":["calibration", "residual", "quantile"]}
+}
