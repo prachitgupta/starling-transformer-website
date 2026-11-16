@@ -16,11 +16,19 @@ def discover(root=ROOT):
         relative=path.relative_to(root/'videos').as_posix()
         words=set(re.findall(r'[a-z0-9]+',path.stem.lower()))
         scores={key:len(words.intersection(slot['keywords'])) for key,slot in slots.items()}
-        slot=overrides.get(relative)
+        override=overrides.get(relative)
+        clip={}
+        if isinstance(override,dict):
+            slot=override.get('slot')
+            clip={key:override[key] for key in ('start','end') if key in override}
+        else:
+            slot=override
         if slot is None:
             slot=next((key for key in slots if path.stem.lower().startswith(key+'_')),None)
         if slot is None: slot=max(scores,key=scores.get) if max(scores.values(),default=0)>0 else 'additional'
         if slot not in output: raise ValueError(f'Unknown slot {slot!r} for {relative}')
-        output[slot].append({'title':re.sub(r'[_-]+',' ',path.stem).strip(), 'src':quote(path.relative_to(root).as_posix(),safe='/')})
+        item={'title':re.sub(r'[_-]+',' ',path.stem).strip(), 'src':quote(path.relative_to(root).as_posix(),safe='/')}
+        item.update(clip)
+        output[slot].append(item)
     return output
 if __name__=='__main__': print(json.dumps(discover(),indent=2))

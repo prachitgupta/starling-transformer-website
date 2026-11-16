@@ -1,0 +1,94 @@
+{
+  "case": "B",
+  "expert_selector": "gpt",
+  "score": "max(sup_t [D_dot + lambda D]_+, beta lambda L / sqrt(w))",
+  "beta": 2.0,
+  "target_coverage": 0.9,
+  "splits": 1000,
+  "preferences": [
+    "balanced",
+    "close_to_object",
+    "deadline_then_clearance",
+    "far_from_object",
+    "shortest",
+    "widest"
+  ],
+  "held_out_rows": 2598,
+  "conditions": {
+    "gaussian": {
+      "name": "corridor_aware_residual_beta_2",
+      "label": "Single residual + language regret (beta = 2)",
+      "bounds": "expert",
+      "coverage": 0.95451,
+      "coverage_p05": 0.92,
+      "coverage_p95": 0.98,
+      "radius_mean_m": 0.8130514204514894,
+      "radius_final_m": 0.9980959386497554,
+      "realised_max_m": 0.34289682860317944,
+      "quantiles": [
+        0.7432636397742114
+      ],
+      "calibration_size": 200,
+      "test_size": 200
+    },
+    "heavy_tailed": {
+      "name": "corridor_aware_residual_beta_2",
+      "label": "Single residual + language regret (beta = 2)",
+      "bounds": "expert",
+      "coverage": 0.9536549999999999,
+      "coverage_p05": 0.92,
+      "coverage_p95": 0.98,
+      "radius_mean_m": 0.7969239319055516,
+      "radius_final_m": 0.9776801087834801,
+      "realised_max_m": 0.3251401551538219,
+      "quantiles": [
+        0.7280132542370047
+      ],
+      "calibration_size": 200,
+      "test_size": 200
+    },
+    "state_dependent": {
+      "name": "corridor_aware_residual_beta_2",
+      "label": "Single residual + language regret (beta = 2)",
+      "bounds": "expert",
+      "coverage": 0.952535,
+      "coverage_p05": 0.92,
+      "coverage_p95": 0.98,
+      "radius_mean_m": 0.7691732692563182,
+      "radius_final_m": 0.9427253437360198,
+      "realised_max_m": 0.29424957614218356,
+      "quantiles": [
+        0.7019242599140811
+      ],
+      "calibration_size": 200,
+      "test_size": 200
+    },
+    "shifted_start": {
+      "name": "corridor_aware_residual_beta_2",
+      "label": "Single residual + language regret (beta = 2)",
+      "bounds": "expert",
+      "coverage": 0.956635,
+      "coverage_p05": 0.925,
+      "coverage_p95": 0.98,
+      "radius_mean_m": 0.8539002093524458,
+      "radius_final_m": 1.0025380578792362,
+      "realised_max_m": 0.41925538017626285,
+      "quantiles": [
+        0.7432636397742114
+      ],
+      "calibration_size": 200,
+      "test_size": 200
+    }
+  },
+  "certificate": {
+    "alpha": 0.1,
+    "calibration_size": 200,
+    "rank": 181,
+    "quantile": 0.5891385911920985,
+    "contraction_rate": 1.0,
+    "position_block_w": 1.885,
+    "record_step_s": 0.02,
+    "steady_state_radius_m": 0.8088596090212212
+  },
+  "evidence_scope": "Offline 4D-car simulation. Transformer, HRRT* routes, GPT labels, and scenes are real; vehicle dynamics, disturbances, and rollouts are simulated."
+}

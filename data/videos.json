@@ -1,32 +1,43 @@
 {
-  "framework": [],
   "mission": [
     {
-      "title": "human audinting",
-      "src": "videos/human_audinting.mp4"
-    },
-    {
       "title": "mission exec INTERACTIVE",
-      "src": "videos/mission_exec_INTERACTIVE.mp4"
+      "src": "videos/mission_exec_INTERACTIVE.mp4",
+      "start": 8,
+      "end": 38
     }
   ],
-  "transformer": [],
-  "hardware": [
+  "audit": [
     {
-      "title": "starling2 rrt tube stage10.29 1.00",
-      "src": "videos/starling2_rrt_tube_stage10.29-1.00.mp4"
+      "title": "human audinting",
+      "src": "videos/human_audinting.mp4",
+      "start": 0,
+      "end": 16.5
+    }
+  ],
+  "workspace": [
+    {
+      "title": "human restricted trajectory",
+      "src": "videos/human_restricted%20trajectory.mp4",
+      "start": 13,
+      "end": 38
     }
   ],
   "perception": [
     {
       "title": "perception uncertainity",
-      "src": "videos/perception_uncertainity.mp4"
+      "src": "videos/perception_uncertainity.mp4",
+      "start": 0,
+      "end": 12.3
     }
   ],
-  "control": [],
-  "clearance": [],
-  "acp": [],
-  "expert": [],
-  "calibration": [],
+  "hardware": [
+    {
+      "title": "starling2 rrt tube stage10.29 1.00",
+      "src": "videos/starling2_rrt_tube_stage10.29-1.00.mp4",
+      "start": 0,
+      "end": 40
+    }
+  ],
   "additional": []
 }
