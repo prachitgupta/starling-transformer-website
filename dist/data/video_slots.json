@@ -1,0 +1,7 @@
+{
+  "mission": {"title":"Language-conditioned mission execution", "keywords":["mission", "interactive", "intent"]},
+  "audit": {"title":"Human audit of expert trajectories", "keywords":["audit", "auditing", "human"]},
+  "workspace": {"title":"Restricting the detectable workspace", "keywords":["restricted", "workspace", "detectable"]},
+  "perception": {"title":"Perception under environmental uncertainty", "keywords":["perception", "uncertainty", "semantic", "vicon"]},
+  "hardware": {"title":"Starling hardware trajectory execution", "keywords":["hardware", "flight", "execution", "tube"]}
+}

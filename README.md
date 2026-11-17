@@ -1,47 +1,22 @@
-# STARLING Transformer project website
+# Project website
 
-Static research website for probabilistically robust and safe tracking of language-conditioned natural-language tasks.
+Static page for *Probabilistically Robust and Safe Tracking of Language-Conditioned Natural-Language Tasks*.
+`index.html` is the whole site (Nerfies template); `static/` holds the CSS, JS, plots and the two framework videos.
+Pushing to `main` deploys the repository root to GitHub Pages.
 
-- Site: https://prachitgupta.github.io/starling-transformer-website/
-- Research code: https://github.com/prachitgupta/starling_testing_ws
-
-The simulation section intentionally contains only the finalized **Case B conditional score with the GPT expert selector**. It does not publish Case A or heuristic-selector results. Hardware recordings demonstrate the workflow; the environmental-uncertainty comparison remains visibly labeled as synthetic until measured calibration and test data exist.
-
-## Preview
+`animations/` holds the source of the framework videos:
 
 ```bash
-python scripts/build_site.py
-python -m http.server 8000 --directory dist
+cd animations
+python video1.py          # static/videos/framework_nonlinear.mp4  (uses the recordings in static/videos/clips)
+python video2.py          # static/videos/framework_hardware.mp4
 ```
 
-Open http://localhost:8000.
+Requirements: Python 3.10+, numpy, matplotlib, opencv-python, and ffmpeg on the PATH.
+`framework_video_data.json` holds the certificate, calibration scores and held-out episodes drawn in video 1.
 
-## Refresh the finalized simulation evidence
+## Equations
+Edit `tools/index_source.html` (TeX in `\( \)` / `\[ \]`), then pre-render with KaTeX:
 
-The import copies the paper's original Case B/GPT histogram, scene, and literature-comparison figures. It regenerates Case B-only coverage and tightness summaries from the same benchmark JSON so the website never displays a mixed Case A/Case B panel.
-
-```bash
-python scripts/import_simulation_results.py \
-  --benchmark-dir ~/Desktop/starling_final_testing/src/llm_vision_planner/simulation/results/benchmark \
-  --report ~/Desktop/starling_final_testing/src/papers/report/simulation.pdf
-```
-
-Generated website evidence:
-
-- `data/case_b_gpt.json`
-- `assets/images/simulation/`
-- `assets/papers/simulation.pdf`
-
-## Video routing
-
-Recordings in `videos/` are assigned through `videos/placements.json`. Each placement may specify `slot`, `start`, and `end`; the website seeks to the selected excerpt and returns to its start when the excerpt finishes.
-
-## Validation and deployment
-
-```bash
-python -m unittest discover -s tests
-python -m compileall -q scripts tests
-python scripts/build_site.py
-```
-
-The GitHub Pages workflow rebuilds `dist/` and deploys on every push to `main`. Public videos must remain below GitHub's per-file limit enforced by the tests.
+    npm install katex
+    node tools/render_math.js tools/index_source.html index.html
