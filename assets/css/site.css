@@ -83,3 +83,4 @@ footer{padding:50px 0;background:#07110d;color:#8fa198}.footer-grid{display:flex
 }
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}.story-slide{animation:none}}
+.feature-video{margin:0 0 44px}.feature-video .media-card{margin:0}.storyboard-title{margin:0 0 18px;font-size:1.2rem;letter-spacing:-.02em}.simulation-section .feature-video{margin:34px 0}.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 34px}.problem-grid article{padding:24px;border:1px solid var(--line);border-radius:18px;background:#f8faf8}.problem-grid span{color:var(--green);font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase}.problem-grid p{margin:10px 0 0;color:#58645e;font-size:.86rem}@media(max-width:820px){.problem-grid{grid-template-columns:1fr}}

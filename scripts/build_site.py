@@ -56,11 +56,13 @@ def media(slots: dict, videos: dict, key: str, caption: str, evidence: str = "De
             clip += f' data-clip-start="{float(start):g}"'
         if end is not None:
             clip += f' data-clip-end="{float(end):g}"'
+        poster_file = ROOT / "videos/posters" / (Path(html.unescape(item["src"])).stem + ".jpg")
+        poster = f' poster="videos/posters/{esc(poster_file.name)}"' if poster_file.exists() else ""
         figures.append(
             f"""
             <figure class="media-card">
               <div class="media-frame">
-                <video controls preload="metadata" playsinline{clip} aria-label="{esc(title)}">
+                <video controls preload="metadata" playsinline{clip}{poster} aria-label="{esc(title)}">
                   <source src="{esc(item['src'] + fragment)}" type="video/mp4">
                   Your browser does not support this video. <a href="{esc(item['src'])}">Download the recording</a>.
                 </video>
@@ -153,7 +155,10 @@ def main() -> None:
         "framework",
         "From language to a certified flight tube",
         "Animated framework",
-        framework_storyboard(),
+        f"""
+        <div class="feature-video">{media(slots, videos, 'framework_nonlinear', 'Framework video 1, general nonlinear case (2 min): problem formulation, expert generation from L₁ and L₂, human audit, Transformer architecture, waypoints to trajectory, 4D car and the three disturbance regimes, contracting controller, conditional score and tube, simulation, hardware. Trajectories, routes, and scores in the simulation scenes are from the benchmark.', 'Animation')}</div>
+        <h3 class="storyboard-title">Step through the framework</h3>
+        """ + framework_storyboard(),
         "framework-section",
     )
 
@@ -189,6 +194,7 @@ def main() -> None:
         f"""
         <div class="evidence-banner measured"><span>Measured simulation result</span><p>1,000 scene-level splits · 200 calibration and 200 test episodes per split · all six language preferences · 90% target coverage</p></div>
         <div class="metrics-row">{metric_cards}</div>
+        <div class="feature-video">{media(slots, videos, 'simulation', 'Two held-out episodes from the benchmark: the trained Transformer plan, the GPT-selected HRRT* reference, the simulated closed-loop 4D car, and the certified 90% tube. First the preference is satisfied; then the Transformer takes the other corridor and the tube is built around the nearest HRRT* route.', 'Simulation')}</div>
         <div class="certificate-strip">
           <div><span>Seed-split quantile</span><strong>q = {certificate['quantile']:.3f}</strong></div>
           <div><span>Calibration rank</span><strong>{certificate['rank']} / {certificate['calibration_size']}</strong></div>
@@ -213,6 +219,12 @@ def main() -> None:
         "Perception-aware calibration",
         f"""
         <div class="evidence-banner planned"><span>Hardware evidence boundary</span><p>The recordings below demonstrate the data-collection, perception, and flight workflows. The environmental-uncertainty comparison remains a synthetic placeholder until a complete exchangeable hardware calibration set is collected.</p></div>
+        <div class="problem-grid">
+          <article><span>Problem</span><p>On hardware the obstacle is seen by an onboard camera. Its perceived footprint shifts from frame to frame and is sometimes missing, so the plan is made for a scene that differs from the true one.</p></article>
+          <article><span>Common approaches</span><p>Existing pipelines assume a sensor model: Gaussian position noise with chance constraints, or a bounded perception error that inflates every obstacle. The guarantee holds only as far as the assumed model does.</p></article>
+          <article><span>This work</span><p>The perception error is calibrated together with the planner error in one conformal score measured on real perceived scenes. No sensor model is assumed; the only requirement is exchangeability, which the restricted workspace is designed to preserve.</p></article>
+        </div>
+        <div class="feature-video">{media(slots, videos, 'framework_hardware', 'Framework video 2, hardware (1.5 min): why split conformal prediction needs exchangeability, how missed detections break it, the workspace survey, synthetic training data and measured calibration data, the double-integrator formulation with ideal PX4 tracking, one calibration sample, and the Starling flight. Drawn scenes are schematic illustrations; recordings are real.', 'Animation')}</div>
         <div class="two-column hardware-intro">
           <div><h3>Preserve exchangeability before calibration</h3><p>Split conformal prediction requires exchangeable calibration and test episodes. Dropping missed detections after data collection would condition the sample and break that design. The workspace is therefore restricted in advance to regions where the perception stack achieved complete detection in the characterization run.</p>{media(slots, videos, 'workspace', 'Selected excerpt showing the physical procedure used to restrict the detectable workspace.')}</div>
           <div><div class="workspace-animation" aria-label="Animated detectable workspace selection"><div class="grid-points">{''.join('<i></i>' for _ in range(48))}</div><div class="scan-line"></div><div class="workspace-label"><span>gray</span> candidate points <b>→</b> <span>green</span> finalized detectable region</div></div><h3>Training and calibration draws</h3><p>Goals and obstacles are ablated across the finalized green region. Synthetic scenes generate training examples. Calibration episodes draw from the same declared workspace while the perceived obstacle footprint comes from the physical perception pipeline; misses remain recorded as misses.</p><div class="data-flow"><span>fixed detectable region</span><i>→</i><span>synthetic training scenes</span><i>→</i><span>physical calibration captures</span></div></div>

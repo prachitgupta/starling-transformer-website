@@ -11,16 +11,16 @@
     {
       "title": "human audinting",
       "src": "videos/human_audinting.mp4",
-      "start": 0,
-      "end": 16.5
+      "start": 2,
+      "end": 8
     }
   ],
   "workspace": [
     {
       "title": "human restricted trajectory",
       "src": "videos/human_restricted%20trajectory.mp4",
-      "start": 13,
-      "end": 38
+      "start": 28,
+      "end": 36
     }
   ],
   "perception": [
@@ -37,6 +37,24 @@
       "src": "videos/starling2_rrt_tube_stage10.29-1.00.mp4",
       "start": 0,
       "end": 40
+    }
+  ],
+  "framework_nonlinear": [
+    {
+      "title": "framework nonlinear",
+      "src": "videos/framework_nonlinear.mp4"
+    }
+  ],
+  "framework_hardware": [
+    {
+      "title": "framework hardware",
+      "src": "videos/framework_hardware.mp4"
+    }
+  ],
+  "simulation": [
+    {
+      "title": "simulation rollouts",
+      "src": "videos/simulation_rollouts.mp4"
     }
   ],
   "additional": []
