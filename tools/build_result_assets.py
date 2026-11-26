@@ -65,8 +65,8 @@ def draw_episode(ax, episode, upto=None, show_legend=True):
 
 def preference_figures():
     episodes = DATA["episodes"][:2]
-    names = ["simulation_widest_berth.png", "simulation_balanced.png"]
-    titles = ["Widest practical berth", "Balanced time and clearance"]
+    names = ["simulation_shortest.png", "simulation_balanced.png"]
+    titles = ["Quickest collision-free route", "Balanced time and clearance"]
     for episode, name, title in zip(episodes, names, titles):
         fig, ax = plt.subplots(figsize=(7.1, 5.4), dpi=180)
         draw_episode(ax, episode)

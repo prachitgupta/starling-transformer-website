@@ -54,7 +54,7 @@ def scene_title(fig, s):
     a = ramp(s, 0.2, 1.2)
     label(ax, 8, 5.65, "Perception Uncertainty-Aware Tracking", FG, 30, a, ha="center", weight="bold")
     label(ax, 8, 4.7, "of Language-Conditioned Oracle Motion Plans", FG, 27, a, ha="center", weight="bold")
-    label(ax, 8, 3.6, "Hardware framework  ·  Starling 2", TEAL, 19, ramp(s, 1.0, 2.0), ha="center")
+    label(ax, 8, 3.6, "Starling 2 framework", TEAL, 19, ramp(s, 1.0, 2.0), ha="center")
 
 
 # =============================================================================== exchangeability
@@ -195,10 +195,10 @@ def scene_training(fig, s):
     label(ax, 0.7, 0.35, "schematic illustration of the generation procedure", DIM, 10, 1.0)
 
 
-# =============================================================================== hardware formulation
+# =============================================================================== formulation
 def scene_formulation(fig, s):
     ax = canvas(fig)
-    heading(ax, "Hardware problem formulation", "contraction between the transformer plan and the expert; ideal tracking by PX4", ramp(s, 0, 0.6))
+    heading(ax, "Problem formulation", "contraction between the transformer plan and the expert; ideal tracking by PX4", ramp(s, 0, 0.6))
     a = ramp(s, 0.2, 0.9)
     panel(ax, 0.7, 3.5, 7.3, 7.2, a)
     centre = np.array([4.0, 5.25])
@@ -239,7 +239,7 @@ def scene_formulation(fig, s):
 # =============================================================================== formulation equations
 def scene_equations(fig, s):
     ax = canvas(fig)
-    heading(ax, "Hardware problem formulation", "the expert is planned on the known environment; the transformer plans on the perceived environment", ramp(s, 0, 0.6))
+    heading(ax, "Problem formulation", "the expert is planned on the known environment; the transformer plans on the perceived environment", ramp(s, 0, 0.6))
     rows = [
         (0.8, r"$E$: ground-truth environment (Vicon estimates of the obstacles)    $\hat E$: perceived environment (perception pipeline)", FG, 14.5),
         (1.6, r"$L_1$: goal-selection language      $L_2$: HRRT$^*$ route-selection language", FG, 14.5),
@@ -335,10 +335,10 @@ def build(videos: Path, out: Path) -> None:
             table["0_title"],
             (perception.scene("Perception uncertainty", "we tighten the safe space and incorporate the effect of perception uncertainty in our probabilistically robust conformal tubes without any assumptions on the sensor model or the nature of disturbance"), perception.duration),
             table["1_exch"],
-            (workspace.scene("Surveying the workspace on hardware", "recorded survey: where does the onboard detector see the obstacle every time?"), workspace.duration),
+            (workspace.scene("Surveying the Starling 2 workspace", "recorded survey: where does the onboard detector see the obstacle every time?"), workspace.duration),
             table["3_grid"], table["4_training"], table["5_formulation"], table["6_sample"],
-            (hardware_a.scene("Hardware demonstration", "the human prescribes the goal position through the interactive gateway; the transformer plan and its conformal tube are shown for approval  (1.4× speed)"), hardware_a.duration),
-            (hardware_b.scene("Hardware demonstration", "the drone flies the approved plan; the final conformal tube around the flown trajectory is shown  (1.4× speed)"), hardware_b.duration)]:
+            (hardware_a.scene("Starling 2 demonstration", "the human prescribes the goal position through the interactive gateway; the transformer plan and its conformal tube are shown for approval  (1.4× speed)"), hardware_a.duration),
+            (hardware_b.scene("Starling 2 demonstration", "the drone flies the approved plan; the final conformal tube around the flown trajectory is shown  (1.4× speed)"), hardware_b.duration)]:
         movie.play(scene, seconds)
     movie.close()
 

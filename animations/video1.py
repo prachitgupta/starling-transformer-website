@@ -21,7 +21,7 @@ from engine import (BG, BLUE, DIM, FG, GREEN, MUTED, ORANGE, PANEL, PURPLE, RED,
 
 HERE = Path(__file__).resolve().parent
 DATA = json.loads((HERE / "framework_video_data.json").read_text())
-EP_A, EP_B, EP_C = DATA["episodes"]            # widest berth (2 obstacles); balanced (3 obstacles); wrong corridor
+EP_SHORTEST, EP_BALANCED = DATA["episodes"]
 CERT = DATA["certificate"]
 FAMILY_COLOURS = [BLUE, PURPLE, ORANGE, TEAL, "#d98fbf", "#8fa3d9", "#c9c26b", "#7fc9a0"]
 
@@ -56,7 +56,7 @@ def scene_title(fig, s):
 def scene_problem(fig, s):
     ax = canvas(fig)
     heading(ax, "Problem formulation", "contraction of the true dynamics to a language-conditioned expert through the transformer approximation of the expert — the expert is not available online", ramp(s, 0, 0.6))
-    ep = EP_B
+    ep = EP_BALANCED
     world = WorldMap((0.6, 0.6, 9.0, 7.2), bounds_of(ep, 0.7))
     a = ramp(s, 0.3, 1.2)
     world.frame(ax, a)
@@ -98,7 +98,7 @@ def scene_problem(fig, s):
 def scene_expert(fig, s):
     ax = canvas(fig)
     heading(ax, "The language-conditioned expert", "HRRT* proposes a family of safe routes; based on the human preference one route is selected as the semantically aware language-conditioned expert", ramp(s, 0, 0.6))
-    ep = EP_A
+    ep = EP_SHORTEST
     world = WorldMap((8.5, 0.9, 15.5, 6.75), bounds_of(ep, 0.25))
     a = ramp(s, 0.2, 1.0)
     world.frame(ax, a)
@@ -129,7 +129,7 @@ def scene_expert(fig, s):
         fade = appear * (1.0 - ramp(s, t_land, t_land + 0.35))
         box(ax, *position, 4.3 * shrink, 0.95 * shrink, text, colour, fade, 12.5 * shrink)
     thrown("$L_1$:  “fly to the far side of the chair”", BLUE, 1.0, 2.2, 3.4, planner)
-    thrown("$L_2$:  “give every obstacle\nthe widest practical berth”", GREEN, 7.4, 8.8, 10.0, selector)
+    thrown("$L_2$:  “take the quickest\ncollision-free route”", GREEN, 7.4, 8.8, 10.0, selector)
 
     # Family of routes, then the selection.
     selected = np.asarray(ep["selected"])
@@ -153,7 +153,7 @@ def scene_expert(fig, s):
 def scene_transformer(fig, s):
     ax = canvas(fig)
     heading(ax, "The transformer approximator", "scene layout + language preference  →  eight waypoints", ramp(s, 0, 0.6))
-    ep = EP_A
+    ep = EP_SHORTEST
     a = ramp(s, 0.3, 1.2)
     # Inputs.
     scene_map = WorldMap((0.5, 4.3, 3.5, 7.2), bounds_of(ep))
@@ -162,7 +162,7 @@ def scene_transformer(fig, s):
     start, goal = scene_map.pt(ep["start"]), scene_map.pt(ep["goal"])
     drone_icon(ax, *start, size=0.12, alpha=a)
     ax.plot(*goal, marker="*", color=YELLOW, markersize=12, alpha=a, markeredgecolor=BG)
-    box(ax, 2.0, 2.3, 3.0, 1.3, "$L_2$:  “give every obstacle\nthe widest practical berth”", GREEN, a, 11.5)
+    box(ax, 2.0, 2.3, 3.0, 1.3, "$L_2$:  “take the quickest\ncollision-free route”", GREEN, a, 11.5)
     label(ax, 2.0, 1.4, "natural-language preference", MUTED, 10.5, a, ha="center")
 
     nodes = {"scene": (5.6, 5.75), "text": (5.6, 2.3), "fusion": (8.55, 4.0), "decoder": (11.35, 4.0)}
@@ -215,7 +215,7 @@ def scene_trajectory(fig, s):
     ax = canvas(fig)
     heading(ax, "Waypoints → dynamically feasible trajectories",
             "one QP pipeline produces state-input references for both the transformer and the offline oracle", ramp(s, 0, 0.6))
-    ep = EP_A
+    ep = EP_SHORTEST
     world = WorldMap((0.6, 0.7, 7.6, 7.2), bounds_of(ep))
     a = ramp(s, 0.2, 1.0)
     world.frame(ax, a)
@@ -239,7 +239,6 @@ def scene_trajectory(fig, s):
     label(ax, x + 0.4, 3.05, r"$\dot{\hat{x}}_d=f(\hat{x}_d)+B\hat{u}_d\quad\Rightarrow\quad(\hat{x}_d,\hat{u}_d)$", YELLOW, 20, ramp(s, 5.6, 6.8))
     label(ax, x, 1.9, "3.  offline oracle reference", FG, 16, ramp(s, 7.4, 8.2), weight="bold")
     label(ax, x + 0.4, 1.25, r"$\dot{x}_d=f(x_d)+Bu_d\quad\Rightarrow\quad(x_d,u_d)$", GREEN, 20, ramp(s, 7.4, 8.5))
-    label(ax, x, 1.15, "both references are fixed before the flight; only the first is known online", MUTED, 11.5, ramp(s, 8.2, 9.0))
 
 
 # =============================================================================== 6. dynamics and disturbances
@@ -368,22 +367,15 @@ def scene_controller(fig, s):
 # =============================================================================== 8. score and tube
 def scene_score(fig, s):
     ax = canvas(fig)
-    heading(ax, "Score definition for the conformal tube", "a conditional score with a small penalty if the language preference is deviated; it quantifies the difference of the transformer prediction from the language-conditioned expert", ramp(s, 0, 0.6))
+    heading(ax, "Score definition for the conformal tube", "one closed-loop score measures the largest violation of contraction relative to the offline oracle", ramp(s, 0, 0.6))
     x = 0.7
-    label(ax, x, 7.0, r"$D(t)=d\left(x_r(t),\,x(t)\right)$", FG, 18, ramp(s, 0.6, 1.4))
-    label(ax, x + 5.2, 7.0, "Riemannian distance from the reference to the flown state  (offline)", MUTED, 11.5, ramp(s, 0.6, 1.4))
+    label(ax, x, 7.0, r"$D(t)=d_M\left(x_d(t),\,x(t)\right)$", FG, 19, ramp(s, 0.6, 1.4))
+    label(ax, x + 5.2, 7.0, "Riemannian distance from the offline oracle to the flown state", MUTED, 13, ramp(s, 0.6, 1.4))
     label(ax, x, 6.2, r"$\rho(t)=\left[\dot{D}(t)+\lambda D(t)\right]_+$", TEAL, 19, ramp(s, 1.6, 2.4))
-    label(ax, x + 5.2, 6.2, "how much the contraction inequality is violated", MUTED, 11.5, ramp(s, 1.6, 2.4))
-
-    # The two cases.
-    a1, a2 = ramp(s, 3.0, 3.8), ramp(s, 4.4, 5.2)
-    box(ax, 4.05, 4.75, 6.9, 1.25, "", GREEN, a1)
-    label(ax, 0.85, 5.05, "preference satisfied  (same corridor as the expert)", GREEN, 12.5, a1, weight="bold")
-    label(ax, 0.85, 4.5, r"reference $x_r$ = language-selected expert,    regret $L=0$", FG, 12.5, a1)
-    box(ax, 11.6, 4.75, 7.6, 1.25, "", ORANGE, a2)
-    label(ax, 8.05, 5.05, "not satisfied  (other side of an obstacle)", ORANGE, 12.5, a2, weight="bold")
-    label(ax, 8.05, 4.5, r"reference $x_r$ = nearest HRRT* route,    regret $L>0$ [m]", FG, 12.5, a2)
-    label(ax, 8.0, 3.4, r"$S\ =\ \max\left(\ \sup_t\,\rho(t)\ ,\ \ \beta\,\frac{\lambda}{\sqrt{w}}\,L\ \right)$", FG, 24, ramp(s, 5.8, 6.8), ha="center")
+    label(ax, x + 5.2, 6.2, "violation of the contraction condition", MUTED, 13, ramp(s, 1.6, 2.4))
+    box(ax, 8.0, 4.55, 8.0, 1.5, "", TEAL, ramp(s, 3.0, 3.8))
+    label(ax, 8.0, 4.75, r"$S\ =\ \sup_{t\in[0,T]}\rho(t)$", FG, 27, ramp(s, 3.2, 4.2), ha="center")
+    label(ax, 8.0, 4.15, "one trajectory  →  one nonconformity score", MUTED, 13, ramp(s, 3.6, 4.6), ha="center")
 
     # Histogram of the real calibration scores with the conformal quantile.
     a3 = ramp(s, 7.2, 8.0)
@@ -407,7 +399,7 @@ def scene_score(fig, s):
     box(ax, 11.35, 1.5, 8.9, 2.0, "", TEAL, af, glow=0.25 * pulse(s, 10.6, 12.2))
     label(ax, 11.35, 1.95, r"$\Pr\left[\ \|p(t)-p_r(t)\|\ \leq\ \sqrt{w}\left(e^{-\lambda t}D(0)+\frac{q}{\lambda}\left(1-e^{-\lambda t}\right)\right)\ \ \forall t\ \right]\ \geq\ 1-\alpha$",
           FG, 13.5, af, ha="center")
-    label(ax, 11.35, 1.0, r"and the language regret is bounded:  $L\leq\sqrt{w}\,q/(\lambda\beta)$",
+    label(ax, 11.35, 1.0, "the tube contracts from its initial radius to the calibrated steady-state radius",
           MUTED, 12, af, ha="center")
 
 
@@ -474,33 +466,33 @@ def scene_end(fig, s):
 def build(videos: Path, out: Path, simulation_out: Path | None = None) -> None:
     audit = Clip(videos / "human_audinting.mp4", 2.0, 8.0)
     hardware = Clip(videos / "starling2_rrt_tube_stage10.29-1.00.mp4", 18.0, 75.0, speed=1.6)
-    sim_b = make_simulation_scene(EP_B, "preference satisfied → selected expert")
-    sim_c = make_simulation_scene(EP_C, "wrong corridor → nearest HRRT* route")
+    sim_shortest = make_simulation_scene(EP_SHORTEST, "quickest collision-free route")
+    sim_balanced = make_simulation_scene(EP_BALANCED, "balanced travel time and clearance")
     movie = Movie(out)
     for scene, seconds in [
             (scene_title, 3.5), (scene_problem, 14.5), (scene_expert, 13.5),
             (audit.scene("Human audit of the expert", "reviewers check the selected route against the language preference before it is used"), audit.duration),
             (scene_transformer, 13.5), (scene_trajectory, 10.5), (scene_dynamics, 12.5), (scene_controller, 12.5),
-            (scene_score, 13.5), (sim_b, 7.0), (sim_c, 7.0),
-            (hardware.scene("Hardware", "Starling 2: the human prescribes the goal, the drone flies the transformer plan, and the final conformal tube is shown  (1.6× speed)"), hardware.duration)]:
+            (scene_score, 13.5), (sim_shortest, 7.0), (sim_balanced, 7.0),
+            (hardware.scene("Starling 2 demonstration", "the human prescribes the goal, the drone flies the transformer plan, and the final conformal tube is shown  (1.6× speed)"), hardware.duration)]:
         movie.play(scene, seconds)
     movie.close()
     if simulation_out is not None:
         clip = Movie(simulation_out)
-        clip.play(sim_b, 7.0)
-        clip.play(sim_c, 7.0)
+        clip.play(sim_shortest, 7.0)
+        clip.play(sim_balanced, 7.0)
         clip.close()
 
 
 def stills(directory: Path) -> None:
     directory.mkdir(parents=True, exist_ok=True)
-    sim_b = make_simulation_scene(EP_B, "preference satisfied → selected expert")
-    sim_c = make_simulation_scene(EP_C, "wrong corridor → nearest HRRT* route")
+    sim_shortest = make_simulation_scene(EP_SHORTEST, "quickest collision-free route")
+    sim_balanced = make_simulation_scene(EP_BALANCED, "balanced travel time and clearance")
     for name, scene, times in [("0_title", scene_title, [3.0]), ("1_problem", scene_problem, [5.0, 13.5]),
                                ("2_expert", scene_expert, [2.8, 6.5, 9.3, 13.0]), ("4_transformer", scene_transformer, [4.0, 12.8]),
                                ("5_trajectory", scene_trajectory, [9.8]), ("6_dynamics", scene_dynamics, [3.0, 11.5]),
                                ("7_controller", scene_controller, [3.0, 11.8]), ("8_score", scene_score, [13.0]),
-                               ("9_sim_b", sim_b, [4.0]), ("9_sim_c", sim_c, [6.5])]:
+                               ("9_sim_shortest", sim_shortest, [4.0]), ("9_sim_balanced", sim_balanced, [6.5])]:
         for time in times:
             still(scene, time, directory / f"{name}_{time:04.1f}.png")
 

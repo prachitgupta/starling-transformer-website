@@ -89,7 +89,7 @@
       </div>
     </div>
     <div class="columns result-pair is-variable is-5">
-      <div class="column"><figure class="figure-card compact"><img src="./static/images/simulation_widest_berth.png" alt="Simulation result for the widest practical berth preference"><figcaption>“Give every obstacle the widest practical berth.”</figcaption></figure></div>
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/simulation_shortest.png" alt="Simulation result for the quickest collision-free route preference"><figcaption>“Take the quickest collision-free way to the destination.”</figcaption></figure></div>
       <div class="column"><figure class="figure-card compact"><img src="./static/images/simulation_balanced.png" alt="Simulation result for the balanced time and clearance preference"><figcaption>“Balance a short travel time with comfortable obstacle clearance.”</figcaption></figure></div>
     </div>
 
@@ -140,7 +140,7 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Hardware Results</h2>
+    <h2 class="title is-3 has-text-centered">Starling 2 Results</h2>
     <p class="section-intro">Starling 2 executes the transformer reference through the PX4 cascaded position and attitude loops.</p>
     <div class="columns is-centered"><div class="column is-four-fifths">
       <video controls muted playsinline preload="metadata" class="media-card"><source src="./static/videos/clips/starling2_rrt_tube_stage10.29-1.00.mp4" type="video/mp4">Your browser does not support the video element.</video>
@@ -156,12 +156,12 @@
     <figure class="figure-card wide"><img src="./static/images/3d construction to improve perception.jpg" alt="Person outline, ToF points, floor contacts, and top-down 3D footprint construction"><figcaption>Person geometry from the image outline, ToF points, and floor contacts, projected into the level top-down frame used by the planner.</figcaption></figure>
     <div class="columns is-centered has-text-centered"><div class="column is-four-fifths">
       <video controls muted playsinline preload="metadata" poster="./static/images/framework_hardware_poster.jpg" class="media-card"><source src="./static/videos/framework_hardware.mp4" type="video/mp4">Your browser does not support the video element.</video>
-      <p class="figure-caption">Hardware framework: perception, language-conditioned planning, transformer imitation, ideal double-integrator tracking, and split-conformal tube calibration.</p>
+      <p class="figure-caption">Framework: perception, language-conditioned planning, transformer imitation, ideal double-integrator tracking, and split-conformal tube calibration.</p>
     </div></div>
 
     <div class="equation-stack">
       <details class="equation-card">
-        <summary>Hardware problem formulation</summary>
+        <summary>Problem formulation</summary>
         <div class="equation-body content">
           <p>\(E\) is the Vicon-ground-truth environment and \(\hat E\) the onboard perceived environment. \(L_1\) specifies the goal, for example “fly to the person,” and \(L_2\) specifies the route preference, for example “give the person extra space.”</p>
           <p>\[ x_d=x_d(E,L_1,L_2,t),\qquad \hat x_d=\hat x_d(\hat E,L_1,L_2,t). \]</p>
@@ -169,7 +169,7 @@
         </div>
       </details>
       <details class="equation-card">
-        <summary>Hardware controller</summary>
+        <summary>Controller</summary>
         <div class="equation-body content">
           <p>\[ u=\hat u_d-K\hat e=\hat u_d-K(x-\hat x_d),\qquad \hat e=x-\hat x_d. \]</p>
           <p>With \(e=x-x_d\),</p>
@@ -178,7 +178,7 @@
         </div>
       </details>
       <details class="equation-card">
-        <summary>Hardware score and safety tube</summary>
+        <summary>Score and safety tube</summary>
         <div class="equation-body content">
           <p>\[ S=\sup_{t\in[0,T]}\|P^{1/2}R(t)\|_2,\qquad W(t)=\|P^{1/2}(x(t)-x_d(t))\|_2. \]</p>
           <p>The score is the largest weighted closed-loop residual. With conformal quantile \(q\),</p>
@@ -187,7 +187,7 @@
         </div>
       </details>
       <details class="equation-card">
-        <summary>Hardware dynamics and tracking assumption</summary>
+        <summary>Dynamics and tracking assumption</summary>
         <div class="equation-body content">
           <p>\[ x=(p,\dot p),\qquad u=\ddot p,\qquad \dot x=Ax+Bu,\quad A=\begin{bmatrix}0&amp;I\\0&amp;0\end{bmatrix},\quad B=\begin{bmatrix}0\\I\end{bmatrix}. \]</p>
           <p>Because the hardware data do not include a separate trajectory rollout for the oracle, the analysis assumes the fast cascaded PID loops in PX4 ideally track the transformer’s dynamically feasible double-integrator reference. Under this assumption, the calibrated residual captures the transformer and perception mismatch relative to the offline oracle.</p>
@@ -199,7 +199,6 @@
       <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_unaware.png" alt="Perception-unaware 80 percent split-conformal certificate with radius 0.893 metres"><figcaption><strong>Perception-unaware:</strong> \(r=0.892961\) m.</figcaption></figure></div>
       <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_aware.png" alt="Perception-aware 80 percent split-conformal certificate with radius 1.554 metres"><figcaption><strong>Perception-aware:</strong> \(r=1.553877\) m.</figcaption></figure></div>
     </div>
-    <p class="evidence-note">Epoch-53 person-only HRRT hardware transformer · \(\delta=0.20\) · nominal 80% coverage · \(n=60\) calibration samples. These diagnostic certificates provide the calibrated radii; whole-flight empirical coverage will be added after the fixed five-flight evaluation is complete.</p>
   </div>
 </section>
 
