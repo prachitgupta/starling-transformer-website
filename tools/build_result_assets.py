@@ -113,11 +113,11 @@ def cleaned_benchmark():
                ("Shifted start", data["shifted_start"]["B"]["gpt"])]
     methods = [
         ("corridor_aware_residual_beta_2", "Ours", "o", "#2563eb"),
-        ("direct_distance", "Max-score CP", "s", "#f97316"),
-        ("weighted_max", "Weighted-max CP", "^", "#16a65a"),
-        ("per_step_union", "Per-step CP", "v", "#7c3aed"),
-        ("ccm_assumed_gaussian", "CCM, Gaussian", "D", "#ef4444"),
-        ("ccm_assumed_worst_case", "CCM, worst case", "P", "#8b6f47"),
+        ("direct_distance", "Max-score CP\nLindemann et al. [1]", "s", "#f97316"),
+        ("weighted_max", "Weighted-max CP\nCleaveland et al. [2]", "^", "#16a65a"),
+        ("per_step_union", "Per-step CP\nLindemann et al. [1]", "v", "#7c3aed"),
+        ("ccm_assumed_gaussian", "Gaussian CCM\nSingh et al. [3]", "D", "#ef4444"),
+        ("ccm_assumed_worst_case", "Worst-case CCM\nManchester–Slotine [4]", "P", "#8b6f47"),
     ]
     fig, axes = plt.subplots(2, 4, figsize=(16, 7.8), dpi=170, sharey="row")
     for col, (title, values) in enumerate(regimes):
@@ -138,7 +138,7 @@ def cleaned_benchmark():
                     ax.scatter(j, y, marker=marker, s=58, color=color, edgecolor="#263238", linewidth=0.45)
             ax.set_title(title if row == 0 else "", fontsize=13.5, weight="bold")
             ax.set_xticks(x)
-            ax.set_xticklabels([m[1] for m in methods], rotation=53, ha="right", fontsize=8.3)
+            ax.set_xticklabels([m[1] for m in methods], rotation=46, ha="right", fontsize=7.5)
             ax.grid(axis="y", color=COLORS["grid"], lw=0.8)
             ax.set_axisbelow(True)
         axes[0, col].axhline(90, color="#111827", ls="--", lw=1.2)

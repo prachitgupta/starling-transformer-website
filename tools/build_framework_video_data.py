@@ -26,6 +26,7 @@ RESULTS = PLANNER / "simulation/results"
 CACHE = RESULTS / "cache"
 RUN_CACHE = CACHE / "bd62da7645c6"
 CERTIFICATE = RESULTS / "benchmark/certificate_caseA_gpt.json"
+CONDITIONAL_CERTIFICATE = RESULTS / "benchmark/certificate_caseB_gpt.json"
 OUTPUT = ROOT / "animations/framework_video_data.json"
 SAMPLE_IDS = ("scene-000005-goal-00-pref-00", "scene-000052-goal-00-pref-02")
 
@@ -52,6 +53,7 @@ def main() -> None:
     rollout = load_npz(RUN_CACHE / "rollout_gaussian.npz")
     signals = load_npz(RUN_CACHE / "signals_gaussian_gpt.npz")
     certificate = json.loads(CERTIFICATE.read_text())
+    conditional_certificate = json.loads(CONDITIONAL_CERTIFICATE.read_text())
 
     residual_scores = ContractionResidualScore(
         float(signals["contraction_rate"]), float(signals["record_step"])
@@ -108,6 +110,20 @@ def main() -> None:
             "steady_state_radius_m": float(certificate["steady_state_radius_m"]),
         },
         "calibration_scores": np.round(calibration_scores, 4).tolist(),
+        "conditional_certificate": {
+            "quantile": float(conditional_certificate["quantile"]),
+            "alpha": float(conditional_certificate["alpha"]),
+            "calibration_size": int(conditional_certificate["calibration_size"]),
+            "rank": int(conditional_certificate["rank"]),
+            "contraction_rate": float(conditional_certificate["contraction_rate"]),
+            "position_block_w": float(conditional_certificate["position_block_w"]),
+            "beta": float(conditional_certificate["beta"]),
+            "steady_state_radius_m": float(conditional_certificate["steady_state_radius_m"]),
+            "language_regret_bound_m": float(conditional_certificate["language_regret_bound_m"]),
+        },
+        "conditional_calibration_scores": [
+            round(float(score), 4) for score in conditional_certificate["calibration_scores"]
+        ],
         "episodes": episodes,
     }
     OUTPUT.write_text(json.dumps(payload, separators=(",", ":")) + "\n")

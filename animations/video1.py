@@ -23,6 +23,7 @@ HERE = Path(__file__).resolve().parent
 DATA = json.loads((HERE / "framework_video_data.json").read_text())
 EP_SHORTEST, EP_BALANCED = DATA["episodes"]
 CERT = DATA["certificate"]
+SCORE_CERT = DATA.get("conditional_certificate", CERT)
 FAMILY_COLOURS = [BLUE, PURPLE, ORANGE, TEAL, "#d98fbf", "#8fa3d9", "#c9c26b", "#7fc9a0"]
 
 
@@ -367,21 +368,30 @@ def scene_controller(fig, s):
 # =============================================================================== 8. score and tube
 def scene_score(fig, s):
     ax = canvas(fig)
-    heading(ax, "Score definition for the conformal tube", "one closed-loop score measures the largest violation of contraction relative to the offline oracle", ramp(s, 0, 0.6))
+    heading(ax, "Conditional score for the conformal tube", "contraction violation plus route regret when the language-selected corridor changes", ramp(s, 0, 0.6))
     x = 0.7
-    label(ax, x, 7.0, r"$D(t)=d_M\left(x_d(t),\,x(t)\right)$", FG, 19, ramp(s, 0.6, 1.4))
-    label(ax, x + 5.2, 7.0, "Riemannian distance from the offline oracle to the flown state", MUTED, 13, ramp(s, 0.6, 1.4))
+    label(ax, x, 7.0, r"$D(t)=d_M\left(x_r(t),\,x(t)\right)$", FG, 19, ramp(s, 0.6, 1.4))
+    label(ax, x + 5.2, 7.0, "Riemannian distance from the selected reference to the flown state", MUTED, 13, ramp(s, 0.6, 1.4))
     label(ax, x, 6.2, r"$\rho(t)=\left[\dot{D}(t)+\lambda D(t)\right]_+$", TEAL, 19, ramp(s, 1.6, 2.4))
     label(ax, x + 5.2, 6.2, "violation of the contraction condition", MUTED, 13, ramp(s, 1.6, 2.4))
-    box(ax, 8.0, 4.55, 8.0, 1.5, "", TEAL, ramp(s, 3.0, 3.8))
-    label(ax, 8.0, 4.75, r"$S\ =\ \sup_{t\in[0,T]}\rho(t)$", FG, 27, ramp(s, 3.2, 4.2), ha="center")
-    label(ax, 8.0, 4.15, "one trajectory  →  one nonconformity score", MUTED, 13, ramp(s, 3.6, 4.6), ha="center")
+
+    a1, a2 = ramp(s, 3.0, 3.8), ramp(s, 4.2, 5.0)
+    box(ax, 4.0, 4.65, 6.8, 1.2, "", GREEN, a1)
+    label(ax, 0.85, 4.95, "preference satisfied  ·  oracle corridor preserved", GREEN, 12.5, a1, weight="bold")
+    label(ax, 0.85, 4.4, r"$x_r=x_d$ and route regret $L=0$", FG, 13, a1)
+    box(ax, 11.6, 4.65, 7.6, 1.2, "", ORANGE, a2)
+    label(ax, 8.05, 4.95, "preference deviated  ·  another corridor is selected", ORANGE, 12.5, a2, weight="bold")
+    label(ax, 8.05, 4.4, r"$x_r$ is the nearest HRRT* route and $L>0$", FG, 13, a2)
+    label(ax, 8.0, 3.35, r"$S=\max\!\left\{\sup_{t\in[0,T]}\rho(t),\ \beta\frac{\lambda}{\sqrt{w}}L\right\}$",
+          FG, 25, ramp(s, 5.4, 6.5), ha="center")
+    label(ax, 8.0, 2.85, "contraction violation  +  language-conditioned route regret", MUTED, 12.5,
+          ramp(s, 5.8, 6.8), ha="center")
 
     # Histogram of the real calibration scores with the conformal quantile.
     a3 = ramp(s, 7.2, 8.0)
     px, py, pw, ph = 0.9, 0.75, 5.6, 1.75
-    scores = np.asarray(DATA["calibration_scores"])
-    q = CERT["quantile"]
+    scores = np.asarray(DATA.get("conditional_calibration_scores", DATA["calibration_scores"]))
+    q = SCORE_CERT["quantile"]
     edges = np.linspace(0, 1.6, 33)
     counts, _ = np.histogram(np.clip(scores, 0, 1.6), edges)
     grow = ramp(s, 7.4, 8.6)
@@ -393,13 +403,13 @@ def scene_score(fig, s):
     aq = ramp(s, 8.6, 9.4)
     ax.plot([px + q / 1.6 * pw] * 2, [py, py + ph * 1.08], color=FG, lw=1.8, linestyle="--", alpha=aq)
     label(ax, px + q / 1.6 * pw + 0.1, py + ph * 1.02, rf"$q={q:.2f}$", FG, 13, aq)
-    label(ax, px, py - 0.3, rf"{CERT['calibration_size']} calibration scores  ·  $q$ = the $\lceil(n+1)(1-\alpha)\rceil$-th smallest", MUTED, 10.5, a3)
+    label(ax, px, py - 0.3, rf"{SCORE_CERT['calibration_size']} calibration scores  ·  $q$ = the $\lceil(n+1)(1-\alpha)\rceil$-th smallest", MUTED, 10.5, a3)
 
     af = ramp(s, 10.0, 11.0)
     box(ax, 11.35, 1.5, 8.9, 2.0, "", TEAL, af, glow=0.25 * pulse(s, 10.6, 12.2))
     label(ax, 11.35, 1.95, r"$\Pr\left[\ \|p(t)-p_r(t)\|\ \leq\ \sqrt{w}\left(e^{-\lambda t}D(0)+\frac{q}{\lambda}\left(1-e^{-\lambda t}\right)\right)\ \ \forall t\ \right]\ \geq\ 1-\alpha$",
           FG, 13.5, af, ha="center")
-    label(ax, 11.35, 1.0, "the tube contracts from its initial radius to the calibrated steady-state radius",
+    label(ax, 11.35, 1.0, r"route-regret guarantee:  $L\leq\sqrt{w}\,q/(\lambda\beta)$",
           MUTED, 12, af, ha="center")
 
 
