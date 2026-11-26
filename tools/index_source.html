@@ -172,9 +172,19 @@
         <summary>Controller</summary>
         <div class="equation-body content">
           <p>\[ u=\hat u_d-K\hat e=\hat u_d-K(x-\hat x_d),\qquad \hat e=x-\hat x_d. \]</p>
-          <p>With \(e=x-x_d\),</p>
-          <p>\[ \dot e=A_c e+R,\qquad A_c=A-BK,\qquad R=B\big[\hat u_d-u_d+K(\hat x_d-x_d)\big]. \]</p>
-          <p>\(K\) makes \(A_c\) contracting. The matrix \(P\succ0\) satisfies \(A_c^\top P+PA_c\preceq-2\lambda_P P\).</p>
+          <p>With \(e=x-x_d\), the oracle-relative error dynamics are</p>
+          <p>\[
+            \begin{aligned}
+              \dot e &= A_c e + R, \\
+              A_c &= A-BK, \\
+              R &= B\!\left[\hat u_d-u_d+K(\hat x_d-x_d)\right].
+            \end{aligned}
+          \]</p>
+          <p>The gain \(K\) makes \(A_c\) contracting. A contraction matrix \(P\succ0\) satisfies</p>
+          <p>\[
+            A_c^{\top}P+PA_c\preceq-2\lambda_P P,
+            \qquad \lambda_P>0.
+          \]</p>
         </div>
       </details>
       <details class="equation-card">
@@ -196,8 +206,8 @@
     </div>
 
     <div class="columns result-pair is-variable is-5">
-      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_unaware.png" alt="Perception-unaware 80 percent split-conformal certificate with radius 0.893 metres"><figcaption><strong>Perception-unaware:</strong> \(r=0.892961\) m.</figcaption></figure></div>
-      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_aware.png" alt="Perception-aware 80 percent split-conformal certificate with radius 1.554 metres"><figcaption><strong>Perception-aware:</strong> \(r=1.553877\) m.</figcaption></figure></div>
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_unaware.png" alt="Trajectory rollouts compared with the perception-unaware tube of radius 0.893 metres"><figcaption><strong>Perception-unaware:</strong> \(r=0.892961\) m; one trajectory rollout exits the tube.</figcaption></figure></div>
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_aware.png" alt="The same trajectory rollouts contained by the perception-aware tube of radius 1.554 metres"><figcaption><strong>Perception-aware:</strong> \(r=1.553877\) m; the same trajectory rollouts remain inside the tube.</figcaption></figure></div>
     </div>
   </div>
 </section>

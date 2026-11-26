@@ -154,15 +154,41 @@ def cleaned_benchmark():
     plt.close(fig)
 
 
+def hardware_rollouts(path):
+    """Deterministic illustrative rollouts shared by both certificate panels."""
+    tangent = np.gradient(path, axis=0)
+    tangent /= np.linalg.norm(tangent, axis=1, keepdims=True)
+    normal = np.column_stack([-tangent[:, 1], tangent[:, 0]])
+    t = np.linspace(0, 1, len(path))
+    envelopes = [
+        0.34 * np.sin(np.pi * t) ** 2,
+        -0.48 * np.sin(np.pi * t) ** 2,
+        0.68 * np.sin(np.pi * t) ** 2 * (0.78 + 0.22 * np.sin(3 * np.pi * t)),
+        -1.16 * np.sin(np.pi * t) ** 2,
+    ]
+    return [path + offset[:, None] * normal for offset in envelopes]
+
+
 def hardware_certificate_panel(mode, title, out_name, color):
     cert = json.loads((CERT_ROOT / mode / "split_certificate.json").read_text())
     radius = float(cert["calibrated_radius_m"])
     t = np.linspace(0, 1, 260)
     path = np.column_stack([-2.3 + 4.6 * t, -0.65 + 1.25 * t + 0.3 * np.sin(2 * np.pi * t)])
+    tangent = np.gradient(path, axis=0)
+    tangent /= np.linalg.norm(tangent, axis=1, keepdims=True)
+    normal = np.column_stack([-tangent[:, 1], tangent[:, 0]])
+    upper = path + radius * normal
+    lower = path - radius * normal
+    tube_polygon = np.vstack([upper, lower[::-1]])
+    rollouts = hardware_rollouts(path)
     fig, ax = plt.subplots(figsize=(6.6, 5.0), dpi=180)
-    for j in np.linspace(0, len(path) - 1, 34, dtype=int):
-        ax.add_patch(Circle(path[j], radius, fc=color, ec="none", alpha=0.025))
+    ax.fill(tube_polygon[:, 0], tube_polygon[:, 1], color=color, alpha=0.16, zorder=0)
+    ax.add_patch(Circle(path[0], radius, fc=color, ec="none", alpha=0.16, zorder=0))
+    ax.add_patch(Circle(path[-1], radius, fc=color, ec="none", alpha=0.16, zorder=0))
     ax.plot(path[:, 0], path[:, 1], color="#111827", lw=2.4, label="Reference path")
+    for index, rollout in enumerate(rollouts):
+        ax.plot(rollout[:, 0], rollout[:, 1], color="#16a34a", lw=1.75, alpha=0.9,
+                label="Trajectory rollouts" if index == 0 else None)
     ax.add_patch(Circle(path[len(path)//2], radius, fill=False, ec=color, lw=2.0, label=f"Radius = {radius:.3f} m"))
     ax.scatter(*path[0], color="#111827", s=45, zorder=5)
     ax.scatter(*path[-1], color="#eab308", marker="*", s=120, edgecolor="#111827", linewidth=0.4, zorder=5)
