@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Probabilistically Robust and Safe Tracking of Language-Conditioned Natural-Language Tasks.">
-  <meta name="keywords" content="Conformal prediction, Contraction, Language-conditioned planning, UAV">
+  <meta name="description" content="Probabilistically robust tracking of language-conditioned oracle motion plans by black-box imitation learners.">
+  <meta name="keywords" content="Conformal prediction, contraction, language-conditioned planning, transformer, UAV">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Probabilistically Robust and Safe Tracking of Language-Conditioned Natural-Language Tasks</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <title>Probabilistically Robust Tracking of Language-Conditioned Oracle Motion Plans by Black-Box Imitation Learners</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="./static/css/katex.min.css">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
@@ -27,28 +21,17 @@
 </head>
 <body>
 
-<section class="hero">
+<section class="hero paper-hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">
-            Probabilistically Robust and Safe Tracking of Language-Conditioned Natural-Language Tasks
-          </h1>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- Paper placeholder link. -->
-              <span class="link-block">
-                <a href="https://drive.google.com/file/d/1FL2VxapY7YYmTzV-vZIsgR2KW31kKI3y/view?usp=sharing"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-            </div>
+          <h1 class="title is-1 publication-title">Probabilistically Robust Tracking of Language-Conditioned Oracle Motion Plans by Black-Box Imitation Learners</h1>
+          <div class="publication-links">
+            <span class="button is-normal is-rounded is-dark paper-coming-soon" aria-disabled="true">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper <span class="coming-soon">(Coming soon)</span></span>
+            </span>
           </div>
         </div>
       </div>
@@ -56,298 +39,183 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section-tight">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            A transformer plans waypoints from a scene and two natural-language inputs: a goal
-            sentence L<sub>1</sub> and a route preference L<sub>2</sub>. The vehicle flies the
-            transformer plan under a contracting controller that feeds back only the measured
-            state. Offline, a language-conditioned expert (HRRT<sup>*</sup> with a GPT route
-            selector) gives the trajectory the vehicle should have followed. The certificate
-            bounds the Riemannian distance <em>D</em>(<em>t</em>) from the expert to the vehicle by
-            <em>D</em>(<em>t</em>) &le; e<sup>&minus;&lambda;t</sup><em>D</em>(0) + (<em>q</em>/&lambda;)(1 &minus; e<sup>&minus;&lambda;t</sup>)
-            with probability at least 1 &minus; &alpha;, where <em>q</em> is the split-conformal
-            quantile of a single conditional score built on the contraction residual
-            [<em>&#7692;</em> + &lambda;<em>D</em>]<sub>+</sub> with a small penalty when the
-            language preference is deviated. No model of the disturbance, the tracking error, or
-            the planner's error is assumed. On 2,598 held-out scenes with the trained transformer
-            and all six preference types, under three disturbance regimes, the tube covers
-            95&ndash;96% of test episodes against a 90% target with a mean position radius of
-            0.77&ndash;0.81&nbsp;m, and keeps its coverage under a start-distribution shift where
-            constructions without contraction drop to 61&ndash;87%.
-          </p>
+        <div class="content has-text-justified abstract-copy">
+          <p>Ensuring formal, robust safety guarantees for black-box foundation models used as motion planners remains an open challenge. Existing approaches commonly rely on assumptions about the model or the nature of the disturbance, or certify safety through the training process, which rules out off-the-shelf models. We introduce <strong>Probabilistically Robust Tracking of Language-Conditioned Experts</strong>, a framework that requires neither, combining conformal prediction with contraction theory to certify incremental exponential boundedness of the unknown true dynamics around a semantically aware, human-aligned, language-conditioned expert that is available only offline. A transformer plans waypoints from a scene, a goal sentence and a route preference, and a closed-loop contracting controller, built on a control contraction metric, tracks this plan using only the measured state. A single score computed on the closed loop, the largest violation of the contraction inequality measured against the offline expert, is calibrated with split conformal prediction to give a tube around the expert with a finite-sample coverage guarantee. The expert is never used online, no disturbance, sensor or planner-error model is assumed, and because the tube inherits the contraction dynamics it remains valid under shifts in the start distribution. We further show that these guarantees extend to perception: in real-world settings where the sources of uncertainty are unknown, calibrating the planner's predictions on the perceived environment against an expert built on the true one absorbs all of them, yielding perception-aware tubes. In simulation, the tubes achieve empirical coverage above the target level across all route preferences and under start-distribution shift, and we demonstrate perception-aware tubes on the Starling 2 vision-based drone platform.</p>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Framework video -->
+<section class="section section-alt">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Framework</h2>
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Framework</h2>
-
-        <video
-          controls
-          muted
-          playsinline
-          preload="metadata"
-          poster="./static/images/framework_nonlinear_poster.jpg"
-          style="display:block; width:100%; height:auto; border-radius:12px;">
+        <video controls muted playsinline preload="metadata" poster="./static/images/framework_nonlinear_poster.jpg" class="media-card">
           <source src="./static/videos/framework_nonlinear.mp4" type="video/mp4">
           Your browser does not support the video element.
         </video>
-        <p class="has-text-centered"
-           style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
-          Contraction of the true dynamics to a language-conditioned expert through the
-          transformer approximation of the expert. The expert is not available online.
-        </p>
+        <p class="figure-caption">Data flow from language and scene tokens to transformer waypoints, a dynamically feasible reference, closed-loop contraction, and the calibrated tube around the offline expert.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Transformer Results</h2>
+    <p class="section-intro">The transformer imitates the GPT-selected HRRT<sup>*</sup> route from the scene, goal sentence \(L_1\), and route preference \(L_2\).</p>
+    <figure class="figure-card">
+      <img src="./static/images/route_examples.png" alt="Transformer and HRRT expert waypoints for six language route preferences">
+      <figcaption>Representative held-out routes. Most predictions preserve the expert corridor; when the transformer chooses a different corridor, the conditional score adds the route-regret term so that the calibrated tube accounts for the semantic mismatch.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Simulation Results</h2>
-
-    <p class="has-text-centered"
-       style="max-width: 850px; margin: 0 auto 2rem; line-height: 1.6;">
-      Disturbance ablation studies for a standard 4D Dubins car with unmodelled disturbance.
-      Trained transformer, HRRT<sup>*</sup> expert with the GPT selector, all six language
-      preferences, 1,000 scene-level splits with 200 calibration and 200 test episodes each,
-      target coverage 90%.
-    </p>
-
+    <p class="section-intro">Closed-loop tracking for a 4D Dubins car under unmodelled disturbances. Results use the trained transformer and GPT route selector with a 90% target coverage.</p>
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h3 class="title is-4">Problem formulation</h3>
-        <div class="content has-text-justified">
-          <p>
-            Standard 4D Dubins car with unmodelled disturbance
-            \(\zeta\), state \(x=(p_x,p_y,\theta,v)\) and input \(u=(\omega,a)\):
-          </p>
-          <p>\[ \dot x = f(x) + B u + \zeta(x,u). \]</p>
-          <p>Three trajectories:</p>
+        <img src="./static/images/simulation_tracking.gif" alt="Animated simulation of closed-loop tracking inside a time-varying conformal contraction tube" class="media-card">
+        <p class="figure-caption">An actual held-out trajectory: expert in green, transformer reference in orange, closed-loop state in blue, and the calibrated time-varying tube in teal.</p>
+      </div>
+    </div>
+    <div class="columns result-pair is-variable is-5">
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/simulation_widest_berth.png" alt="Simulation result for the widest practical berth preference"><figcaption>“Give every obstacle the widest practical berth.”</figcaption></figure></div>
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/simulation_balanced.png" alt="Simulation result for the balanced time and clearance preference"><figcaption>“Balance a short travel time with comfortable obstacle clearance.”</figcaption></figure></div>
+    </div>
+
+    <div class="equation-stack">
+      <details class="equation-card">
+        <summary>Problem formulation</summary>
+        <div class="equation-body content">
+          <p>\(L_1\) is the goal sentence, for example “fly to the far side of the chair.” \(L_2\) is the route preference, for example “give every obstacle the widest practical berth.”</p>
           <ul>
-            <li>\(x_d(L_1,L_2,t)\): language-conditioned expert. HRRT<sup>*</sup> proposes a family of
-              safe routes and, based on the human preference, one route is selected. Offline only.</li>
-            <li>\(\hat x_d(L_1,L_2,t)\): transformer approximation of the expert. Flown online.</li>
-            <li>\(x(t)\): true dynamics under the contracting controller.</li>
+            <li>\(x_d(L_1,L_2,t)\), \(u_d(t)\): dynamically feasible language-conditioned oracle trajectory and input, available only offline.</li>
+            <li>\(\hat x_d(L_1,L_2,t)\), \(\hat u_d(t)\): dynamically feasible transformer trajectory and input, available online.</li>
+            <li>\(x(t)\), \(u(t)\): measured closed-loop state and applied control.</li>
+            <li>\(M(x)\): control contraction metric; \(D(t)=d_M(x_d(t),x(t))\): oracle-relative Riemannian distance.</li>
           </ul>
-          <p>
-            The same QP solver pipeline turns the transformer waypoints and the expert route into
-            dynamically feasible references \((\hat x_d,\hat u_d)\) and \((x_d,u_d)\).
-          </p>
+          <p>The same minimum-control QP converts oracle and transformer waypoints into \((x_d,u_d)\) and \((\hat x_d,\hat u_d)\).</p>
         </div>
-
-        <h3 class="title is-4">Contracting controller</h3>
-        <div class="content has-text-justified">
-          <p>
-            An SOS control contraction metric \(M(x)\) with rate \(\lambda\) gives the
-            minimum-norm controller, which feeds back only the measured state and never uses the expert:
-          </p>
-          <p>\[ u = \hat u_d + k,\qquad
-            k = \begin{cases} 0, & a_0 \le 0,\\[2pt] -\dfrac{a_0}{\|b\|^2}\,b, & a_0 > 0, \end{cases} \]</p>
-          <p>
-            where \(a_0\) and \(b\) are the contraction condition evaluated along the geodesic from
-            \(\hat x_d\) to \(x\) <a href="#ref8">[8]</a>.
-          </p>
+      </details>
+      <details class="equation-card">
+        <summary>Contracting controller</summary>
+        <div class="equation-body content">
+          <p>\[ u=\hat u_d+k,\qquad k=\begin{cases}0,&amp;a_0\le 0,\\[2pt]-\dfrac{a_0}{\|b\|^2}b,&amp;a_0&gt;0,\end{cases} \]</p>
+          <p>The geodesic terms \(a_0\) and \(b\) evaluate the CCM condition between \(\hat x_d\) and the measured state \(x\). The correction \(k\) is the minimum-norm input needed to enforce \(\dot E\le-2\lambda E\), where \(E=d_M(\hat x_d,x)^2\). The oracle is never used online.</p>
         </div>
-
-        <h3 class="title is-4">Score definition for the conformal tube</h3>
-        <div class="content has-text-justified">
-          <p>
-            With \(D(t)=d_M(x_d(t),x(t))\) the Riemannian distance from the expert to the vehicle,
-            the score quantifies the difference of the transformer's predictions from the
-            language-conditioned expert. We use a conditional score with a small penalty
-            \(L\) if the language preference is deviated:
-          </p>
-          <p>\[ \rho(t) = \big[\dot D(t) + \lambda D(t)\big]_+,\qquad
-            S = \max\Big(\sup_t \rho(t),\; \beta\,\tfrac{\lambda}{\sqrt{w}}\,L\Big). \]</p>
-          <p>
-            Split conformal prediction <a href="#ref9">[9]</a> on \(n\) calibration episodes gives
-            \(q\), the \(\lceil (n+1)(1-\alpha)\rceil\)-th smallest score. With probability at least
-            \(1-\alpha\), with no assumption on the disturbance,
-          </p>
-          <p>\[ D(t) \le e^{-\lambda t} D(0) + \frac{q}{\lambda}\big(1-e^{-\lambda t}\big),
-            \qquad \|p(t)-p_d(t)\| \le \sqrt{w}\,D(t). \]</p>
+      </details>
+      <details class="equation-card">
+        <summary>Score definition and certified tube</summary>
+        <div class="equation-body content">
+          <p>\[ \rho(t)=\big[\dot D(t)+\lambda D(t)\big]_+,\qquad S=\max\!\left(\sup_t\rho(t),\;\beta\frac{\lambda}{\sqrt w}L\right). \]</p>
+          <p>\(\rho\) is the <strong>violation of the contraction condition</strong>. \(L\) is zero when the transformer preserves the oracle corridor and positive when it does not. Split conformal calibration returns quantile \(q\), giving</p>
+          <p>\[ D(t)\le e^{-\lambda t}D(0)+\frac q\lambda\big(1-e^{-\lambda t}\big),\qquad \|p(t)-p_d(t)\|\le\sqrt w\,D(t) \]</p>
+          <p>with trajectory-level probability at least \(1-\alpha\).</p>
         </div>
-      </div>
+      </details>
+      <details class="equation-card">
+        <summary>Simulation dynamics and disturbances</summary>
+        <div class="equation-body content">
+          <p>\[ x=(p_x,p_y,\theta,v),\quad u=(\omega,a),\quad \dot x=f(x)+Bu+\zeta(x,u), \]</p>
+          <p>\[ f(x)=\begin{bmatrix}v\cos\theta\\v\sin\theta\\0\\0\end{bmatrix},\qquad B=\begin{bmatrix}0&amp;0\\0&amp;0\\1&amp;0\\0&amp;1\end{bmatrix}. \]</p>
+          <p>\(\zeta(x,u)\) is an unmodelled disturbance. The study evaluates Gaussian, heavy-tailed, and state-dependent drag/slip regimes, plus a shifted start distribution; the certificate does not assume any of these disturbance models.</p>
+        </div>
+      </details>
     </div>
 
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-5 has-text-centered">Conformal quantile of the conditional score</h3>
-        <img src="./static/images/score_histogram_caseB_gpt.png"
-             alt="Histogram of the conditional nonconformity scores with the split-conformal quantile"
-             style="display: block; width: 100%; height: auto; border-radius: 12px;">
-        <p class="has-text-centered"
-           style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
-          Conditional score <em>S</em> = max( sup<sub>t</sub> [<em>&#7692;</em> + &lambda;<em>D</em>]<sub>+</sub>,
-          &beta;&lambda;<em>L</em>/&radic;<em>w</em> ) on 200 calibration episodes. The orange part is the
-          language-regret penalty on the wrong-corridor episodes; the dashed line is the quantile
-          <em>q</em> = the &lceil;(<em>n</em>+1)(1&minus;&alpha;)&rceil;-th smallest score.
-        </p>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-5 has-text-centered">Coverage of the conformal tube across disturbances</h3>
-        <img src="./static/images/simulation_coverage_ours.png"
-             alt="Empirical coverage and tube radius of the conformal tube across disturbance regimes"
-             style="display: block; width: 100%; height: auto; border-radius: 12px;">
-        <p class="has-text-centered"
-           style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
-          Gaussian, heavy-tailed (Student-<em>t</em><sub>3</sub>) and state-dependent
-          (drag + slip) disturbance, and a shifted start distribution. Bars: 5th&ndash;95th
-          percentile over the 1,000 splits.
-        </p>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <h3 class="title is-5 has-text-centered">Benchmark against existing safety-tube methods</h3>
-        <img src="./static/images/simulation_benchmark.png"
-             alt="Coverage and mean tube radius of our tube against literature baselines"
-             style="display: block; width: 100%; height: auto; border-radius: 12px;">
-        <p class="has-text-centered"
-           style="max-width: 850px; margin: 1rem auto 0; font-size: 0.95rem; line-height: 1.6;">
-          Top: empirical coverage (target 90%). Bottom: mean tube radius around the expert.
-          Trajectory-level max-score CP and per-step CP follow
-          <a href="https://arxiv.org/abs/2210.10254">[1]</a>, weighted-max CP follows
-          <a href="https://ojs.aaai.org/index.php/AAAI/article/view/30089">[2]</a>, the CCM tube with a
-          Gaussian disturbance assumption follows
-          <a href="https://journals.sagepub.com/doi/10.1177/02783649231186165">[3]</a>, and the
-          worst-case CCM tube follows <a href="https://arxiv.org/abs/1703.07373">[4]</a>.
-          Two scores and the residual to the selected expert are our ablations.
-        </p>
-      </div>
-    </div>
+    <figure class="figure-card wide"><img src="./static/images/simulation_coverage_ours.png" alt="Empirical tube coverage and radius across simulation disturbances"><figcaption>Empirical coverage and mean radius across Gaussian, heavy-tailed, state-dependent, and shifted-start regimes. Error bars show the 5th–95th percentiles over 1,000 scene-level splits.</figcaption></figure>
+    <figure class="figure-card wide"><img src="./static/images/simulation_benchmark_clean.png" alt="Benchmark against existing safety-tube methods without internal ablations"><figcaption>Comparison with trajectory-level max-score CP, weighted-max CP, per-step CP, and assumption-based CCM tubes. Internal score ablations are omitted.</figcaption></figure>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Hardware Implementation with Environmental Uncertainties</h2>
+    <h2 class="title is-3 has-text-centered">Hardware Results</h2>
+    <p class="section-intro">Starling 2 executes the transformer reference through the PX4 cascaded position and attitude loops.</p>
+    <div class="columns is-centered"><div class="column is-four-fifths">
+      <video controls muted playsinline preload="metadata" class="media-card"><source src="./static/videos/clips/starling2_rrt_tube_stage10.29-1.00.mp4" type="video/mp4">Your browser does not support the video element.</video>
+      <p class="figure-caption">Starling 2 planning, approval, execution, and time-varying tube visualization.</p>
+    </div></div>
+  </div>
+</section>
 
-    <p class="has-text-centered"
-       style="max-width: 850px; margin: 0 auto 2rem; line-height: 1.6;">
-      We tighten the safe space and incorporate the effect of perception uncertainty in our
-      probabilistically robust conformal tubes without any assumptions on the sensor model or
-      the nature of disturbance. Split conformal prediction needs exchangeability, so the
-      workspace is restricted to regions with 100% detectability. Training data is synthetic;
-      calibration data is sampled from the same distribution with the perceived obstacle coming
-      from the actual drone.
-    </p>
+<section class="section section-alt">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Perception Uncertainty-Aware Tube</h2>
+    <p class="section-intro">Calibration compares a transformer plan built from the perceived environment \(\hat E\) with an oracle built from the Vicon-ground-truth environment \(E\), absorbing the combined planner and perception mismatch without a sensor-error model.</p>
+    <figure class="figure-card wide"><img src="./static/images/3d construction to improve perception.jpg" alt="Person outline, ToF points, floor contacts, and top-down 3D footprint construction"><figcaption>Person geometry from the image outline, ToF points, and floor contacts, projected into the level top-down frame used by the planner.</figcaption></figure>
+    <div class="columns is-centered has-text-centered"><div class="column is-four-fifths">
+      <video controls muted playsinline preload="metadata" poster="./static/images/framework_hardware_poster.jpg" class="media-card"><source src="./static/videos/framework_hardware.mp4" type="video/mp4">Your browser does not support the video element.</video>
+      <p class="figure-caption">Hardware framework: perception, language-conditioned planning, transformer imitation, ideal double-integrator tracking, and split-conformal tube calibration.</p>
+    </div></div>
 
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Hardware problem formulation</h3>
-        <div class="content has-text-justified">
-          <p>
-            Ideal tracking by the PX4 cascaded PID gives a planar double integrator
-          </p>
-          <p>\[ \dot x = Ax + Bu,\qquad A=\begin{bmatrix}0&amp;I\\0&amp;0\end{bmatrix},\quad
-            B=\begin{bmatrix}0\\I\end{bmatrix}. \]</p>
-          <p>
-            \(L_1\) is the goal sentence and \(L_2\) the route preference.
-            \(E\) is the known environment from Vicon ground truth and \(\hat E\) the perceived environment.
-          </p>
-          <p>\[ x_d = x_d(E,L_1,L_2,t),\qquad \hat x_d = \hat x_d(\hat E,L_1,L_2,t), \]</p>
-          <p>\[ e = x - x_d\ \text{(offline)},\qquad \hat e = x - \hat x_d\ \text{(online)},\qquad
-            u = \hat u_d - K\hat e. \]</p>
-          <p>\[ \dot e = A_c e + R,\quad A_c = A-BK,\quad
-            R = B\big[\underbrace{\hat u_d-u_d}_{\text{planner}} + \underbrace{K(\hat x_d-x_d)}_{\text{perception}}\big]. \]</p>
-          <p>
-            With \(A_c^\top P + PA_c \preceq -2\lambda_P P\), the score is
-            \(S=\sup_t \|P^{1/2}R(t)\|_2\) and, with \(W(t)=\|P^{1/2}(x-x_d)\|_2\),
-          </p>
-          <p>\[ \|x(t)-x_d(t)\|_2 \le \frac{W(0)e^{-\lambda_P t} + \frac{q}{\lambda_P}\big(1-e^{-\lambda_P t}\big)}{\sqrt{\lambda_{\min}(P)}}. \]</p>
-          <p>
-            The perception pipeline is YOLOv8-based object detection integrated with point-cloud
-            estimates from ToF sensors.
-          </p>
+    <div class="equation-stack">
+      <details class="equation-card">
+        <summary>Hardware problem formulation</summary>
+        <div class="equation-body content">
+          <p>\(E\) is the Vicon-ground-truth environment and \(\hat E\) the onboard perceived environment. \(L_1\) specifies the goal, for example “fly to the person,” and \(L_2\) specifies the route preference, for example “give the person extra space.”</p>
+          <p>\[ x_d=x_d(E,L_1,L_2,t),\qquad \hat x_d=\hat x_d(\hat E,L_1,L_2,t). \]</p>
+          <p>The offline oracle uses \(E\); the onboard transformer uses \(\hat E\). The resulting difference includes planning and perception uncertainty.</p>
         </div>
-      </div>
+      </details>
+      <details class="equation-card">
+        <summary>Hardware controller</summary>
+        <div class="equation-body content">
+          <p>\[ u=\hat u_d-K\hat e=\hat u_d-K(x-\hat x_d),\qquad \hat e=x-\hat x_d. \]</p>
+          <p>With \(e=x-x_d\),</p>
+          <p>\[ \dot e=A_c e+R,\qquad A_c=A-BK,\qquad R=B\big[\hat u_d-u_d+K(\hat x_d-x_d)\big]. \]</p>
+          <p>\(K\) makes \(A_c\) contracting. The matrix \(P\succ0\) satisfies \(A_c^\top P+PA_c\preceq-2\lambda_P P\).</p>
+        </div>
+      </details>
+      <details class="equation-card">
+        <summary>Hardware score and safety tube</summary>
+        <div class="equation-body content">
+          <p>\[ S=\sup_{t\in[0,T]}\|P^{1/2}R(t)\|_2,\qquad W(t)=\|P^{1/2}(x(t)-x_d(t))\|_2. \]</p>
+          <p>The score is the largest weighted closed-loop residual. With conformal quantile \(q\),</p>
+          <p>\[ \|x(t)-x_d(t)\|_2\le\frac{W(0)e^{-\lambda_Pt}+\frac q{\lambda_P}(1-e^{-\lambda_Pt})}{\sqrt{\lambda_{\min}(P)}} \]</p>
+          <p>with probability at least \(1-\alpha\). This is the final probabilistically robust conformal contraction tube between the transformer-driven trajectory and the offline oracle.</p>
+        </div>
+      </details>
+      <details class="equation-card">
+        <summary>Hardware dynamics and tracking assumption</summary>
+        <div class="equation-body content">
+          <p>\[ x=(p,\dot p),\qquad u=\ddot p,\qquad \dot x=Ax+Bu,\quad A=\begin{bmatrix}0&amp;I\\0&amp;0\end{bmatrix},\quad B=\begin{bmatrix}0\\I\end{bmatrix}. \]</p>
+          <p>Because the hardware data do not include a separate trajectory rollout for the oracle, the analysis assumes the fast cascaded PID loops in PX4 ideally track the transformer’s dynamically feasible double-integrator reference. Under this assumption, the calibrated residual captures the transformer and perception mismatch relative to the offline oracle.</p>
+        </div>
+      </details>
     </div>
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <video
-          controls
-          muted
-          playsinline
-          preload="metadata"
-          poster="./static/images/framework_hardware_poster.jpg"
-          style="display:block; width:100%; height:auto; border-radius:12px;">
-          <source src="./static/videos/framework_hardware.mp4" type="video/mp4">
-          Your browser does not support the video element.
-        </video>
-        <p class="has-text-centered"
-           style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
-          Contraction between the transformer and the language-conditioned expert on the
-          Starling 2, with ideal tracking by the PX4 cascaded PID. The trajectories followed by
-          the drone stay within the probabilistically robust conformal tube.
-        </p>
-      </div>
+    <div class="columns result-pair is-variable is-5">
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_unaware.png" alt="Perception-unaware 80 percent split-conformal certificate with radius 0.893 metres"><figcaption><strong>Perception-unaware:</strong> \(r=0.892961\) m.</figcaption></figure></div>
+      <div class="column"><figure class="figure-card compact"><img src="./static/images/hardware_perception_aware.png" alt="Perception-aware 80 percent split-conformal certificate with radius 1.554 metres"><figcaption><strong>Perception-aware:</strong> \(r=1.553877\) m.</figcaption></figure></div>
     </div>
-
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <h3 class="title is-5 has-text-centered">Benchmark under environmental uncertainties</h3>
-        <img src="./static/images/hardware_env_uncertainty_dummy.png"
-             alt="Placeholder comparison of assumption-based safety tubes with the distribution-free conformal tube"
-             style="display: block; width: 100%; height: auto; border-radius: 12px;">
-        <p class="has-text-centered"
-           style="max-width: 850px; margin: 1rem auto 0; font-size: 0.95rem; line-height: 1.6;">
-          Placeholder with synthetic numbers. Methods that assume a sensor model (EKF
-          <a href="#ref5">[5]</a>, chance constraints
-          <a href="https://doi.org/10.1109/TRO.2011.2161160">[6]</a>, set-membership bounds
-          <a href="https://doi.org/10.1109/TAC.1968.1098790">[7]</a>) against our distribution-free tube.
-          Measured hardware numbers will replace this plot once the calibration set is collected.
-        </p>
-      </div>
-    </div>
+    <p class="evidence-note">Epoch-53 person-only HRRT hardware transformer · \(\delta=0.20\) · nominal 80% coverage · \(n=60\) calibration samples. These diagnostic certificates provide the calibrated radii; whole-flight empirical coverage will be added after the fixed five-flight evaluation is complete.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">References</h2>
-    <div class="content" style="max-width: 850px; margin: 0 auto; font-size: 0.92rem; line-height: 1.6;">
-      <p id="ref1">[1] L. Lindemann, M. Cleaveland, G. Shim, and G. J. Pappas, &ldquo;Safe planning in dynamic environments using conformal prediction,&rdquo; <em>IEEE Robotics and Automation Letters</em>, vol. 8, no. 8, pp. 5116&ndash;5123, 2023.</p>
-      <p id="ref2">[2] M. Cleaveland, I. Lee, G. J. Pappas, and L. Lindemann, &ldquo;Conformal prediction regions for time series using linear complementarity programming,&rdquo; in <em>Proc. AAAI Conference on Artificial Intelligence</em>, 2024.</p>
-      <p id="ref3">[3] S. Singh, B. Landry, A. Majumdar, J.-J. Slotine, and M. Pavone, &ldquo;Robust feedback motion planning via contraction theory,&rdquo; <em>The International Journal of Robotics Research</em>, vol. 42, no. 9, pp. 655&ndash;688, 2023.</p>
-      <p id="ref4">[4] S. L. Herbert, M. Chen, S. Han, S. Bansal, J. F. Fisac, and C. J. Tomlin, &ldquo;FaSTrack: a modular framework for fast and guaranteed safe motion planning,&rdquo; in <em>Proc. IEEE Conference on Decision and Control</em>, 2017.</p>
-      <p id="ref5">[5] S. Thrun, W. Burgard, and D. Fox, <em>Probabilistic Robotics</em>. MIT Press, 2005.</p>
-      <p id="ref6">[6] L. Blackmore, M. Ono, and B. C. Williams, &ldquo;Chance-constrained optimal path planning with obstacles,&rdquo; <em>IEEE Transactions on Robotics</em>, vol. 27, no. 6, pp. 1080&ndash;1094, 2011.</p>
-      <p id="ref7">[7] F. C. Schweppe, &ldquo;Recursive state estimation: unknown but bounded errors and system inputs,&rdquo; <em>IEEE Transactions on Automatic Control</em>, vol. 13, no. 1, pp. 22&ndash;28, 1968.</p>
-      <p id="ref8">[8] I. R. Manchester and J.-J. E. Slotine, &ldquo;Control contraction metrics: convex and intrinsic criteria for nonlinear feedback design,&rdquo; <em>IEEE Transactions on Automatic Control</em>, vol. 62, no. 6, pp. 3046&ndash;3053, 2017.</p>
-      <p id="ref9">[9] G. Shafer and V. Vovk, &ldquo;A tutorial on conformal prediction,&rdquo; <em>Journal of Machine Learning Research</em>, vol. 9, pp. 371&ndash;421, 2008.</p>
+    <div class="content references">
+      <p>[1] L. Lindemann, M. Cleaveland, G. Shim, and G. J. Pappas, “Safe planning in dynamic environments using conformal prediction,” <em>IEEE Robotics and Automation Letters</em>, 2023.</p>
+      <p>[2] M. Cleaveland, I. Lee, G. J. Pappas, and L. Lindemann, “Conformal prediction regions for time series using linear complementarity programming,” <em>AAAI</em>, 2024.</p>
+      <p>[3] S. Singh, B. Landry, A. Majumdar, J.-J. Slotine, and M. Pavone, “Robust feedback motion planning via contraction theory,” <em>IJRR</em>, 2023.</p>
+      <p>[4] I. R. Manchester and J.-J. E. Slotine, “Control contraction metrics: convex and intrinsic criteria for nonlinear feedback design,” <em>IEEE TAC</em>, 2017.</p>
+      <p>[5] G. Shafer and V. Vovk, “A tutorial on conformal prediction,” <em>JMLR</em>, 2008.</p>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <p style="font-size: 0.85rem;">
-            Page template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-            Framework animations rendered from <code>animations/</code>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
+<footer class="footer"><div class="container"><div class="content has-text-centered"><p class="footer-note">Page template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. Framework animations rendered from the repository’s source-grounded trajectory data.</p></div></div></footer>
 </body>
 </html>

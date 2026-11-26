@@ -40,9 +40,10 @@ def xy(states):
 def scene_title(fig, s):
     ax = canvas(fig)
     a = ramp(s, 0.2, 1.2)
-    label(ax, 8, 5.5, "Probabilistically Robust and Safe Tracking", FG, 27, a, ha="center", weight="bold")
-    label(ax, 8, 4.6, "of Language-Conditioned Natural-Language Tasks", FG, 27, a, ha="center", weight="bold")
-    label(ax, 8, 3.45, "Framework  ·  general nonlinear case", TEAL, 19, ramp(s, 1.0, 2.0), ha="center")
+    label(ax, 8, 5.65, "Probabilistically Robust Tracking", FG, 30, a, ha="center", weight="bold")
+    label(ax, 8, 4.75, "of Language-Conditioned Oracle Motion Plans", FG, 28, a, ha="center", weight="bold")
+    label(ax, 8, 3.8, "by Black-Box Imitation Learners", FG, 28, a, ha="center", weight="bold")
+    label(ax, 8, 2.95, "Simulation framework  ·  nonlinear dynamics", TEAL, 18, ramp(s, 1.0, 2.0), ha="center")
     for k, (colour, name) in enumerate([(YELLOW, "transformer plan"), (GREEN, "language-conditioned expert"),
                                         (BLUE, "flown state"), (TEAL, "conformal contraction tube")]):
         a2 = ramp(s, 1.4 + 0.2 * k, 2.2 + 0.2 * k)
@@ -212,8 +213,8 @@ def scene_transformer(fig, s):
 # =============================================================================== 5. waypoints -> trajectory
 def scene_trajectory(fig, s):
     ax = canvas(fig)
-    heading(ax, "From waypoints to a dynamically feasible reference",
-            "the same QP solver pipeline is used for the transformer waypoints and for the expert route", ramp(s, 0, 0.6))
+    heading(ax, "Waypoints → dynamically feasible trajectories",
+            "one QP pipeline produces state-input references for both the transformer and the offline oracle", ramp(s, 0, 0.6))
     ep = EP_A
     world = WorldMap((0.6, 0.7, 7.6, 7.2), bounds_of(ep))
     a = ramp(s, 0.2, 1.0)
@@ -234,11 +235,10 @@ def scene_trajectory(fig, s):
     label(ax, x, 6.75, "1.  minimum-control QP through the waypoints", FG, 14.5, ramp(s, 1.0, 1.8), weight="bold")
     label(ax, x + 0.4, 5.9, r"$\min_{u_0,\dots,u_{N-1}}\ \ \sum_{k=0}^{N-1}\ \|u_k\|^2$", FG, 19, ramp(s, 1.6, 2.4))
     label(ax, x + 0.4, 5.0, r"$\mathrm{s.t.}\ \ \ x_{k+1}=A\,x_k+B\,u_k,\ \ \ \ p_{k_i}=\hat{w}_i,\ \ i=1,\dots,8$", FG, 16.5, ramp(s, 2.2, 3.0))
-    label(ax, x, 3.85, "2.  nominal reference that solves the 4D Dubins car model", FG, 14.5, ramp(s, 5.0, 5.8), weight="bold")
-    label(ax, x + 0.4, 3.05, r"$\dot{\hat{x}}_d\ =\ f(\hat{x}_d)+B\,\hat{u}_d$", YELLOW, 20, ramp(s, 5.6, 6.4))
-    label(ax, x + 5.0, 3.05, r"$\Rightarrow\ \ (\hat{x}_d,\ \hat{u}_d)$", YELLOW, 18, ramp(s, 6.2, 7.0))
-    label(ax, x, 1.9, "3.  same QP solver pipeline for the expert route", FG, 14.5, ramp(s, 7.4, 8.2), weight="bold")
-    label(ax, x + 6.1, 1.9, r"$\Rightarrow\ (x_d,\ u_d)$", GREEN, 17, ramp(s, 7.4, 8.2))
+    label(ax, x, 3.85, "2.  transformer reference", FG, 16, ramp(s, 5.0, 5.8), weight="bold")
+    label(ax, x + 0.4, 3.05, r"$\dot{\hat{x}}_d=f(\hat{x}_d)+B\hat{u}_d\quad\Rightarrow\quad(\hat{x}_d,\hat{u}_d)$", YELLOW, 20, ramp(s, 5.6, 6.8))
+    label(ax, x, 1.9, "3.  offline oracle reference", FG, 16, ramp(s, 7.4, 8.2), weight="bold")
+    label(ax, x + 0.4, 1.25, r"$\dot{x}_d=f(x_d)+Bu_d\quad\Rightarrow\quad(x_d,u_d)$", GREEN, 20, ramp(s, 7.4, 8.5))
     label(ax, x, 1.15, "both references are fixed before the flight; only the first is known online", MUTED, 11.5, ramp(s, 8.2, 9.0))
 
 
@@ -482,8 +482,7 @@ def build(videos: Path, out: Path, simulation_out: Path | None = None) -> None:
             (audit.scene("Human audit of the expert", "reviewers check the selected route against the language preference before it is used"), audit.duration),
             (scene_transformer, 13.5), (scene_trajectory, 10.5), (scene_dynamics, 12.5), (scene_controller, 12.5),
             (scene_score, 13.5), (sim_b, 7.0), (sim_c, 7.0),
-            (hardware.scene("Hardware", "Starling 2: the human prescribes the goal, the drone flies the transformer plan, and the final conformal tube is shown  (1.6× speed)"), hardware.duration),
-            (scene_end, 4.0)]:
+            (hardware.scene("Hardware", "Starling 2: the human prescribes the goal, the drone flies the transformer plan, and the final conformal tube is shown  (1.6× speed)"), hardware.duration)]:
         movie.play(scene, seconds)
     movie.close()
     if simulation_out is not None:
@@ -501,15 +500,15 @@ def stills(directory: Path) -> None:
                                ("2_expert", scene_expert, [2.8, 6.5, 9.3, 13.0]), ("4_transformer", scene_transformer, [4.0, 12.8]),
                                ("5_trajectory", scene_trajectory, [9.8]), ("6_dynamics", scene_dynamics, [3.0, 11.5]),
                                ("7_controller", scene_controller, [3.0, 11.8]), ("8_score", scene_score, [13.0]),
-                               ("9_sim_b", sim_b, [4.0]), ("9_sim_c", sim_c, [6.5]), ("z_end", scene_end, [3.5])]:
+                               ("9_sim_b", sim_b, [4.0]), ("9_sim_c", sim_c, [6.5])]:
         for time in times:
             still(scene, time, directory / f"{name}_{time:04.1f}.png")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--videos", type=Path, default=HERE.parents[1] / "static" / "videos" / "clips")
-    parser.add_argument("--out", type=Path, default=HERE.parents[1] / "static" / "videos" / "framework_nonlinear.mp4")
+    parser.add_argument("--videos", type=Path, default=HERE.parent / "static" / "videos" / "clips")
+    parser.add_argument("--out", type=Path, default=HERE.parent / "static" / "videos" / "framework_nonlinear.mp4")
     parser.add_argument("--simulation-out", type=Path, default=None)
     parser.add_argument("--stills", type=Path, default=None)
     args = parser.parse_args()

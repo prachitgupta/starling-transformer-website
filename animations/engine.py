@@ -93,11 +93,11 @@ def canvas(fig):
 
 
 def heading(ax, text, sub=None, alpha=1.0):
-    ax.text(0.6, 8.35, text, fontsize=25, fontweight="bold", color=FG, alpha=alpha, va="center")
+    ax.text(0.6, 8.35, text, fontsize=29, fontweight="bold", color=FG, alpha=alpha, va="center")
     if sub:
         import textwrap
         lines = textwrap.wrap(sub, 125)
-        size = 13.5 if len(lines) == 1 else 12
+        size = 15 if len(lines) == 1 else 13.5
         for k, line in enumerate(lines[:2]):
             ax.text(0.62, 7.9 - 0.36 * k, line, fontsize=size, color=MUTED, alpha=alpha, va="center")
 

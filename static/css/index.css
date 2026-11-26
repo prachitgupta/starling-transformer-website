@@ -157,3 +157,50 @@ body {
 }
 
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+
+:root {
+  --ink: #152235;
+  --muted: #53657a;
+  --line: #dce5ee;
+  --wash: #f6f9fc;
+  --accent: #0f8f8f;
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--ink); }
+.paper-hero { background: linear-gradient(135deg, #f5fbfb 0%, #ffffff 56%, #f4f7fb 100%); border-bottom: 1px solid var(--line); }
+.paper-hero .hero-body { padding-top: 5rem; padding-bottom: 4rem; }
+.publication-title { max-width: 1050px; margin: 0 auto 2rem !important; line-height: 1.12 !important; letter-spacing: -0.025em; }
+.paper-coming-soon { cursor: default; pointer-events: none; }
+.coming-soon { color: #b7c3cf; margin-left: .35rem; }
+.section-tight { padding-top: 3.5rem; }
+.section-alt { background: var(--wash); border-top: 1px solid #edf2f7; border-bottom: 1px solid #edf2f7; }
+.abstract-copy { font-size: 1.04rem; line-height: 1.77; }
+.section-intro { max-width: 850px; margin: 0 auto 2.2rem; text-align: center; line-height: 1.7; color: var(--muted); font-size: 1.02rem; }
+.media-card { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 14px 38px rgba(20, 42, 69, .11); background: #fff; }
+.figure-caption, .figure-card figcaption { margin: 1rem auto 0; max-width: 900px; text-align: center; line-height: 1.6; color: var(--muted); font-size: .95rem; }
+.figure-card { margin: 1.5rem auto 3rem; }
+.figure-card img { display: block; width: 100%; height: auto; border-radius: 12px; background: #fff; box-shadow: 0 10px 30px rgba(20, 42, 69, .08); }
+.figure-card.compact { margin: 1rem auto 2rem; }
+.figure-card.wide { margin-top: 3rem; }
+.result-pair { align-items: stretch; margin-top: 1.6rem; }
+.result-pair .figure-card img { height: 100%; object-fit: contain; }
+.equation-stack { max-width: 900px; margin: 2.3rem auto 2.5rem; display: grid; gap: .8rem; }
+.equation-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 14px rgba(20, 42, 69, .045); }
+.equation-card summary { cursor: pointer; list-style: none; position: relative; padding: 1.05rem 3.2rem 1.05rem 1.25rem; font-family: 'Google Sans', sans-serif; font-weight: 700; font-size: 1.08rem; color: var(--ink); }
+.equation-card summary::-webkit-details-marker { display: none; }
+.equation-card summary::after { content: '+'; position: absolute; right: 1.25rem; top: .8rem; font-size: 1.55rem; color: var(--accent); font-weight: 400; }
+.equation-card[open] summary::after { content: '−'; }
+.equation-card[open] summary { border-bottom: 1px solid var(--line); }
+.equation-body { padding: 1.2rem 1.35rem .9rem; line-height: 1.68; }
+.equation-body .katex-display { margin: 1rem 0; }
+.evidence-note { max-width: 900px; margin: .5rem auto 0; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: #edf8f8; color: #3d5668; line-height: 1.65; border-radius: 0 8px 8px 0; }
+.references { max-width: 900px; margin: 0 auto; font-size: .92rem; line-height: 1.6; }
+.footer-note { font-size: .85rem; color: var(--muted); }
+
+@media screen and (max-width: 768px) {
+  .paper-hero .hero-body { padding-top: 3rem; padding-bottom: 2.5rem; }
+  .publication-title { font-size: 2.15rem !important; }
+  .section { padding: 2.8rem 1.1rem; }
+  .equation-body { padding-left: 1rem; padding-right: 1rem; }
+}

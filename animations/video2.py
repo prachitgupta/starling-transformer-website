@@ -52,9 +52,9 @@ def route(start, goal, centre, side=1.0, clearance=0.75, n=160):
 def scene_title(fig, s):
     ax = canvas(fig)
     a = ramp(s, 0.2, 1.2)
-    label(ax, 8, 5.3, "Hardware implementation", FG, 30, a, ha="center", weight="bold")
-    label(ax, 8, 4.4, "with environmental uncertainties", FG, 30, a, ha="center", weight="bold")
-    label(ax, 8, 3.3, "Framework  ·  Starling 2, onboard perception", TEAL, 18, ramp(s, 1.0, 2.0), ha="center")
+    label(ax, 8, 5.65, "Perception Uncertainty-Aware Tracking", FG, 30, a, ha="center", weight="bold")
+    label(ax, 8, 4.7, "of Language-Conditioned Oracle Motion Plans", FG, 27, a, ha="center", weight="bold")
+    label(ax, 8, 3.6, "Hardware framework  ·  Starling 2", TEAL, 19, ramp(s, 1.0, 2.0), ha="center")
 
 
 # =============================================================================== exchangeability
@@ -321,8 +321,7 @@ def scene_end(fig, s):
 
 SCENES = [("0_title", scene_title, 3.5, [3.0]), ("1_exch", scene_exchangeability, 14.0, [4.5, 13.5]),
           ("3_grid", scene_grid, 11.5, [4.0, 11.0]), ("4_training", scene_training, 12.5, [5.0, 12.0]),
-          ("5_formulation", scene_formulation, 13.5, [4.5, 13.0]), ("5b_equations", scene_equations, 12.0, [11.0]), ("6_sample", scene_sample, 13.5, [6.5, 13.0]),
-          ("z_end", scene_end, 5.0, [4.5])]
+          ("5_formulation", scene_formulation, 13.5, [4.5, 13.0]), ("6_sample", scene_sample, 13.5, [6.5, 13.0])]
 
 
 def build(videos: Path, out: Path) -> None:
@@ -337,10 +336,9 @@ def build(videos: Path, out: Path) -> None:
             (perception.scene("Perception uncertainty", "we tighten the safe space and incorporate the effect of perception uncertainty in our probabilistically robust conformal tubes without any assumptions on the sensor model or the nature of disturbance"), perception.duration),
             table["1_exch"],
             (workspace.scene("Surveying the workspace on hardware", "recorded survey: where does the onboard detector see the obstacle every time?"), workspace.duration),
-            table["3_grid"], table["4_training"], table["5_formulation"], table["5b_equations"], table["6_sample"],
+            table["3_grid"], table["4_training"], table["5_formulation"], table["6_sample"],
             (hardware_a.scene("Hardware demonstration", "the human prescribes the goal position through the interactive gateway; the transformer plan and its conformal tube are shown for approval  (1.4× speed)"), hardware_a.duration),
-            (hardware_b.scene("Hardware demonstration", "the drone flies the approved plan; the final conformal tube around the flown trajectory is shown  (1.4× speed)"), hardware_b.duration),
-            table["z_end"]]:
+            (hardware_b.scene("Hardware demonstration", "the drone flies the approved plan; the final conformal tube around the flown trajectory is shown  (1.4× speed)"), hardware_b.duration)]:
         movie.play(scene, seconds)
     movie.close()
 
@@ -354,8 +352,8 @@ def stills(directory: Path) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--videos", type=Path, default=HERE.parents[1] / "static" / "videos" / "clips")
-    parser.add_argument("--out", type=Path, default=HERE.parents[1] / "static" / "videos" / "framework_hardware.mp4")
+    parser.add_argument("--videos", type=Path, default=HERE.parent / "static" / "videos" / "clips")
+    parser.add_argument("--out", type=Path, default=HERE.parent / "static" / "videos" / "framework_hardware.mp4")
     parser.add_argument("--stills", type=Path, default=None)
     args = parser.parse_args()
     if args.stills:
